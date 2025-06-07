@@ -280,23 +280,4 @@ const UseCases = () => {
                   onClick={() => setActiveUseCase(index)}
                   className={`transition-all duration-300 ${
                     index === activeUseCase 
-                      ? 'w-6 h-1.5 bg-[#5DB8FF] rounded-full' 
-                      : 'w-1.5 h-1.5 bg-gray-600 hover:bg-gray-500 rounded-full'
-                  }`}
-                />
-              ))}
-            </div>
-
-            {/* Compact auto-cycle indicator */}
-            {!isHovered && (
-              <div className="flex items-center justify-center gap-1.5 mt-3 text-xs text-gray-500">
-                <div className="w-1 h-1 bg-[#5DB8FF] rounded-full animate-pulse"></div>
-                <span>Auto-cycling</span>
-              </div>
-            )}
-          </div>
-
-        </div>
-      </div>
-
-      {/* Simplified animatio
+                      ? 'w
