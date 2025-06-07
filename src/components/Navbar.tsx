@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Brain, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,12 +17,19 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Features', href: '#features' },
+    { label: 'Features', href: '/features' },
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'Developers', href: '#developers' },
     { label: 'About', href: '#about' }
   ];
+
+  const isActive = (href) => {
+    if (href.startsWith('#')) {
+      return false; // Handle anchor links differently if needed
+    }
+    return location.pathname === href;
+  };
 
   return (
     <>
@@ -32,25 +41,39 @@ const Navbar = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             
-            {/* Logo - Following footer's brand approach */}
-            <div className="flex items-center gap-3 group cursor-pointer">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3 group cursor-pointer">
               <div className="relative">
                 <Brain className="w-8 h-8 text-[#5DB8FF]" />
                 <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
               </div>
               <span className="text-xl font-bold text-white">NeuroTwin</span>
-            </div>
+            </Link>
 
-            {/* Desktop Navigation - Clean, minimal approach like footer links */}
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
-                >
-                  {link.label}
-                </a>
+                link.href.startsWith('#') ? (
+                  <a
+                    key={index}
+                    href={link.href}
+                    className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={index}
+                    to={link.href}
+                    className={`transition-colors text-sm font-medium ${
+                      isActive(link.href)
+                        ? 'text-[#5DB8FF]'
+                        : 'text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </div>
 
@@ -69,37 +92,52 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu - Following footer's content structure */}
+      {/* Mobile Menu */}
       <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
         isMobileMenuOpen 
           ? 'opacity-100 pointer-events-auto' 
           : 'opacity-0 pointer-events-none'
       }`}>
-        {/* Backdrop with footer-style gradient */}
+        {/* Backdrop */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] to-[#161B22] border-t border-gray-800"></div>
         
         {/* Content */}
         <div className="relative flex flex-col h-full px-6 py-16">
-          {/* Mobile brand section - similar to footer brand */}
-          <div className="flex items-center gap-3 mb-12">
+          {/* Mobile brand section */}
+          <Link to="/" className="flex items-center gap-3 mb-12" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="relative">
               <Brain className="w-8 h-8 text-[#5DB8FF]" />
               <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
             </div>
             <span className="text-xl font-bold text-white">NeuroTwin</span>
-          </div>
+          </Link>
 
-          {/* Navigation links - footer-style spacing and typography */}
+          {/* Navigation links */}
           <div className="space-y-6 mb-12">
             {navLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-gray-400 hover:text-white transition-colors text-lg"
-              >
-                {link.label}
-              </a>
+              link.href.startsWith('#') ? (
+                <a
+                  key={index}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-gray-400 hover:text-white transition-colors text-lg"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block transition-colors text-lg ${
+                    isActive(link.href)
+                      ? 'text-[#5DB8FF]'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
 

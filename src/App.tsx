@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,18 +9,31 @@ import Features from './components/Features';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 
-function App() {
+// Home page component
+const HomePage = () => {
   return (
-    <div className="min-h-screen bg-[#0D1117]">
-      <Navbar />
+    <>
       <Hero />
       <About />
-      <Features />
       <UseCases />
       <PersonaDemo />
       <CTA />
-      <Footer />
-    </div>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-[#0D1117]">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/features" element={<Features />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
