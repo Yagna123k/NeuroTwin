@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Zap, Star, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -150,26 +150,65 @@ const Hero = () => {
             <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
           </div>
 
-          {/* Perfectly balanced headline */}
+          {/* Enhanced animated headline with staggered reveal */}
           <div className="max-w-6xl mx-auto mb-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-white leading-[0.85] tracking-tight">
-              <span className="block mb-4">Turn Yourself</span>
-              <span className="block mb-4">Into</span>
-              <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block">
+              <span 
+                className={`block mb-4 transition-all duration-1000 transform ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: '200ms' }}
+              >
+                Turn Yourself
+              </span>
+              <span 
+                className={`block mb-4 transition-all duration-1000 transform ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: '400ms' }}
+              >
+                Into
+              </span>
+              <span 
+                className={`bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block transition-all duration-1000 transform ${
+                  isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
+                }`}
+                style={{ 
+                  transitionDelay: '600ms',
+                  animation: isVisible ? 'titleGlow 3s ease-in-out infinite' : 'none'
+                }}
+              >
                 Software
                 <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/50 via-[#8CD5FF] to-[#5DB8FF]/50 blur-2xl opacity-20 animate-pulse"></div>
+                
+                {/* Animated underline effect */}
+                <div 
+                  className={`absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] transition-all duration-1500 ${
+                    isVisible ? 'w-full opacity-100' : 'w-0 opacity-0'
+                  }`}
+                  style={{ 
+                    transitionDelay: '1000ms',
+                    animation: isVisible ? 'shimmer 2s ease-in-out infinite' : 'none'
+                  }}
+                ></div>
               </span>
             </h1>
           </div>
 
           {/* Improved caption with better hierarchy */}
-          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+          <p className={`text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-light transition-all duration-1000 transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ transitionDelay: '800ms' }}>
             Create an intelligent digital twin that thinks, talks, and acts like you.{' '}
             <span className="text-[#5DB8FF] font-medium">Scale yourself infinitely</span> while you focus on what only you can do.
           </p>
 
           {/* Enhanced CTA section */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 transition-all duration-1000 transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ transitionDelay: '1000ms' }}>
             {/* Premium CTA button with improved effects */}
             <button className="group relative px-10 py-5 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-semibold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/30 flex items-center gap-3 overflow-hidden border border-[#5DB8FF]/30">
               {/* Enhanced background effects */}
@@ -198,13 +237,22 @@ const Hero = () => {
           </div>
 
           {/* Enhanced stats with better visual hierarchy */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className={`grid grid-cols-3 gap-8 max-w-2xl mx-auto transition-all duration-1000 transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ transitionDelay: '1200ms' }}>
             {[
               { value: "24/7", label: "Always Active", icon: "⚡" },
               { value: "∞", label: "Infinite Scale", icon: "🚀" },
               { value: "100%", label: "Authentic You", icon: "🧠" }
             ].map((stat, index) => (
-              <div key={index} className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
+              <div 
+                key={index} 
+                className={`group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-500 transform ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                }`}
+                style={{ transitionDelay: `${1400 + index * 100}ms` }}
+              >
                 <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300">
                   {stat.value}
                 </div>
@@ -216,13 +264,57 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Enhanced scroll indicator - bottom right */}
-      <div className="absolute bottom-8 right-8">
-        <div className="flex flex-col items-center gap-2 text-gray-500 hover:text-gray-400 transition-colors cursor-pointer group">
-          <div className="w-5 h-8 border-2 border-gray-700 group-hover:border-gray-600 rounded-full p-1 transition-colors">
-            <div className="w-1 h-2 bg-gradient-to-b from-[#5DB8FF] to-transparent rounded-full animate-pulse"></div>
+      {/* Enhanced animated scroll indicator - bottom right */}
+      <div className={`absolute bottom-8 right-8 transition-all duration-1000 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+      }`}
+      style={{ transitionDelay: '1600ms' }}>
+        <div className="flex flex-col items-center gap-3 text-gray-500 hover:text-gray-300 transition-all duration-300 cursor-pointer group">
+          {/* Animated scroll container */}
+          <div className="relative">
+            <div className="w-6 h-10 border-2 border-gray-700 group-hover:border-gray-500 rounded-full p-1 transition-all duration-300 relative overflow-hidden">
+              {/* Animated scroll dot */}
+              <div 
+                className="w-1 h-2 bg-gradient-to-b from-[#5DB8FF] to-[#8CD5FF] rounded-full"
+                style={{
+                  animation: 'scrollDot 2s ease-in-out infinite'
+                }}
+              ></div>
+              
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#5DB8FF]/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            {/* Floating chevron */}
+            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
+              <ChevronDown 
+                className="w-4 h-4 text-[#5DB8FF] opacity-60"
+                style={{
+                  animation: 'chevronFloat 2s ease-in-out infinite'
+                }}
+              />
+            </div>
           </div>
-          <span className="text-xs font-medium">Scroll</span>
+          
+          {/* Label with typing effect */}
+          <span className="text-xs font-medium tracking-wider uppercase">
+            <span 
+              className="inline-block"
+              style={{
+                animation: 'typeWriter 3s steps(6) infinite'
+              }}
+            >
+              Scroll
+            </span>
+          </span>
+          
+          {/* Animated line */}
+          <div 
+            className="w-px h-8 bg-gradient-to-b from-[#5DB8FF]/50 to-transparent"
+            style={{
+              animation: 'lineGrow 2s ease-in-out infinite'
+            }}
+          ></div>
         </div>
       </div>
 
@@ -241,13 +333,69 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Custom CSS for animations */}
+      {/* Enhanced Custom CSS for animations */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) translateX(0px); }
           25% { transform: translateY(-20px) translateX(10px); }
           50% { transform: translateY(-10px) translateX(-5px); }
           75% { transform: translateY(-30px) translateX(15px); }
+        }
+        
+        @keyframes titleGlow {
+          0%, 100% { 
+            filter: brightness(1) drop-shadow(0 0 20px rgba(93, 184, 255, 0.3));
+          }
+          50% { 
+            filter: brightness(1.1) drop-shadow(0 0 30px rgba(93, 184, 255, 0.5));
+          }
+        }
+        
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        
+        @keyframes scrollDot {
+          0% { 
+            transform: translateY(0px);
+            opacity: 1;
+          }
+          50% { 
+            transform: translateY(12px);
+            opacity: 0.3;
+          }
+          100% { 
+            transform: translateY(24px);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes chevronFloat {
+          0%, 100% { 
+            transform: translateX(-50%) translateY(0px);
+            opacity: 0.6;
+          }
+          50% { 
+            transform: translateX(-50%) translateY(4px);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes typeWriter {
+          0%, 50% { width: 0; }
+          100% { width: 100%; }
+        }
+        
+        @keyframes lineGrow {
+          0%, 100% { 
+            height: 0px;
+            opacity: 0;
+          }
+          50% { 
+            height: 32px;
+            opacity: 1;
+          }
         }
       `}</style>
     </section>
