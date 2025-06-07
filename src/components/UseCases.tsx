@@ -14,6 +14,7 @@ const UseCases = () => {
       description: "Your twin joins video calls, takes notes, asks relevant questions, and provides summaries — all in your voice and style.",
       details: "Perfect for recurring meetings, client check-ins, or any session where your presence adds value but your attention is needed elsewhere.",
       color: "from-blue-400 via-blue-500 to-blue-600",
+      bgGradient: "from-blue-500/20 via-blue-400/10 to-cyan-500/20",
       borderColor: "border-blue-400/40",
       glowColor: "shadow-blue-500/30",
       stats: "95% accuracy",
@@ -25,6 +26,7 @@ const UseCases = () => {
       description: "Responds to messages across all platforms with your tone, humor, and knowledge, maintaining relationships while you focus.",
       details: "From Slack to Discord to personal messages, your twin handles routine conversations and escalates important matters.",
       color: "from-emerald-400 via-green-500 to-emerald-600",
+      bgGradient: "from-emerald-500/20 via-green-400/10 to-teal-500/20",
       borderColor: "border-emerald-400/40",
       glowColor: "shadow-emerald-500/30",
       stats: "24/7 response",
@@ -36,6 +38,7 @@ const UseCases = () => {
       description: "Creates emails, documents, social posts, and articles that sound authentically you — your voice, your insights, your style.",
       details: "Whether it's technical documentation, creative copy, or professional correspondence, your twin writes like you would.",
       color: "from-purple-400 via-purple-500 to-pink-500",
+      bgGradient: "from-purple-500/20 via-purple-400/10 to-pink-500/20",
       borderColor: "border-purple-400/40",
       glowColor: "shadow-purple-500/30",
       stats: "10x faster",
@@ -47,6 +50,7 @@ const UseCases = () => {
       description: "Record podcast episodes, audiobooks, or video narrations using your cloned voice with perfect pronunciation and emotion.",
       details: "Schedule content creation while you sleep. Your twin can record hours of material using your voice patterns.",
       color: "from-orange-400 via-orange-500 to-red-500",
+      bgGradient: "from-orange-500/20 via-orange-400/10 to-red-500/20",
       borderColor: "border-orange-400/40",
       glowColor: "shadow-orange-500/30",
       stats: "Studio quality",
@@ -58,6 +62,7 @@ const UseCases = () => {
       description: "Generate creative concepts, solve problems, and explore possibilities using your thinking patterns and knowledge base.",
       details: "Your twin processes information the way you do, offering insights and solutions that align with your mental models.",
       color: "from-yellow-400 via-amber-500 to-orange-500",
+      bgGradient: "from-yellow-500/20 via-amber-400/10 to-orange-500/20",
       borderColor: "border-yellow-400/40",
       glowColor: "shadow-yellow-500/30",
       stats: "Infinite ideas",
@@ -69,6 +74,7 @@ const UseCases = () => {
       description: "Coordinate meetings, respond to requests, and make decisions about your time based on your preferences and priorities.",
       details: "Your twin knows your schedule patterns, energy levels, and commitments to optimize your day effectively.",
       color: "from-indigo-400 via-indigo-500 to-blue-500",
+      bgGradient: "from-indigo-500/20 via-indigo-400/10 to-blue-500/20",
       borderColor: "border-indigo-400/40",
       glowColor: "shadow-indigo-500/30",
       stats: "Smart scheduling",
@@ -147,8 +153,8 @@ const UseCases = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              {/* Main showcase card - removed center background color */}
-              <div className={`relative p-12 rounded-4xl border backdrop-blur-sm transition-all duration-700 bg-gray-900/20 ${useCases[activeUseCase].borderColor} shadow-2xl ${useCases[activeUseCase].glowColor}`}>
+              {/* Main showcase card with enhanced colors */}
+              <div className={`relative p-12 rounded-4xl border backdrop-blur-sm transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-2xl ${useCases[activeUseCase].glowColor}`}>
                 
                 {/* Navigation arrows */}
                 <button
@@ -218,12 +224,11 @@ const UseCases = () => {
                   </button>
                 </div>
 
-                {/* Enhanced animated background elements - only on edges */}
+                {/* Enhanced animated background elements */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-4xl">
-                  <div className={`absolute -top-32 -right-32 w-64 h-64 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-3xl opacity-15 animate-pulse`}></div>
-                  <div className={`absolute -bottom-32 -left-32 w-48 h-48 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-3xl opacity-10 animate-pulse delay-1000`}></div>
-                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-2xl opacity-8 animate-pulse delay-2000`}></div>
-                  <div className={`absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-2xl opacity-8 animate-pulse delay-3000`}></div>
+                  <div className={`absolute -top-32 -right-32 w-64 h-64 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-3xl opacity-20 animate-pulse`}></div>
+                  <div className={`absolute -bottom-32 -left-32 w-48 h-48 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-3xl opacity-15 animate-pulse delay-1000`}></div>
+                  <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br ${useCases[activeUseCase].color} rounded-full blur-3xl opacity-5 animate-pulse delay-2000`}></div>
                 </div>
 
                 {/* Floating particles */}
@@ -253,7 +258,7 @@ const UseCases = () => {
                   onClick={() => setActiveUseCase(index)}
                   className={`group relative p-4 rounded-2xl border transition-all duration-500 ${
                     activeUseCase === index
-                      ? `bg-gray-800/30 ${useCase.borderColor} scale-105 ${useCase.glowColor}`
+                      ? `bg-gradient-to-br ${useCase.bgGradient} ${useCase.borderColor} scale-105 ${useCase.glowColor}`
                       : 'bg-gray-800/20 border-gray-700/30 hover:border-gray-600/50 hover:bg-gray-800/30 hover:scale-102'
                   }`}
                 >
