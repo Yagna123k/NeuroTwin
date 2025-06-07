@@ -152,7 +152,7 @@ const UseCases = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Compact showcase card */}
-              <div className={`relative p-8 rounded-3xl border backdrop-blur-sm transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-xl ${useCases[activeUseCase].glowColor}`}>
+              <div className={`relative p-8 px-16 rounded-3xl border backdrop-blur-sm transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-xl ${useCases[activeUseCase].glowColor}`}>
                 
                 {/* Navigation arrows */}
                 <button
