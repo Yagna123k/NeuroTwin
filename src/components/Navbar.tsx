@@ -56,7 +56,7 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="relative text-gray-400 hover:text-white transition-all duration-300 font-medium text-[15px] tracking-wide group py-2"
+                  className="relative text-gray-400 hover:text-white transition-all duration-300 font-medium text-[15px] tracking-wide group p-2"
                 >
                   <span className="relative z-10">{link.label}</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/10 to-[#3A9EFF]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100"></div>
