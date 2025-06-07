@@ -152,10 +152,22 @@ const UseCases = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Compact showcase card */}
-              <div className={`relative p-8 rounded-3xl border backdrop-blur-sm transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-xl ${useCases[activeUseCase].glowColor}`}>
+              <div className={`relative p-8 px-16 rounded-3xl border backdrop-blur-sm transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-xl ${useCases[activeUseCase].glowColor}`}>
                 
                 {/* Navigation arrows */}
+                <button
+                  onClick={prevUseCase}
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                >
+                  <ChevronLeft className="w-5 h-5 text-white" />
+                </button>
                 
+                <button
+                  onClick={nextUseCase}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                >
+                  <ChevronRight className="w-5 h-5 text-white" />
+                </button>
 
                 {/* Compact header */}
                 <div className="flex items-center gap-4 mb-6">
