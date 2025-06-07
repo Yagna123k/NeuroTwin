@@ -192,12 +192,6 @@ const FounderCard = ({ founder, index, isVisible }) => {
                 <span className="text-3xl font-black text-white transition-all duration-300 group-hover:scale-110">
                   {founder.name.split(' ').map(n => n[0]).join('')}
                 </span>
-                
-                {/* Shimmer effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-2xl transition-all duration-700 ${
-                  isHovered ? 'translate-x-full' : '-translate-x-full'
-                }`} style={{ transform: isHovered ? 'translateX(100%)' : 'translateX(-100%)' }}></div>
-              </div>
             </div>
             
             {/* Enhanced status indicator */}
