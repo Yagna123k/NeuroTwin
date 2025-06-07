@@ -22,7 +22,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
       {/* Premium AI Background with refined animations */}
       <div className="absolute inset-0">
         {/* Base gradient */}
