@@ -8,6 +8,7 @@ import PersonaDemo from './components/PersonaDemo';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
+import Demo from './components/Demo';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />
+          <Route path="/demo" element={<Demo />} />
         </Routes>
         <Footer />
       </div>
