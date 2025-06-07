@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
+import AboutPage from './components/AboutPage';
 import UseCases from './components/UseCases';
 import PersonaDemo from './components/PersonaDemo';
 import Features from './components/Features';
@@ -35,7 +35,7 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/demo" element={<Demo />} />
         </Routes>
         <Footer />
