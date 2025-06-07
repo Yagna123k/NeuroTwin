@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
 
-const AnimatedNumber = ({ value, duration = 2000, delay = 0, shouldStart = false }) => {
+const AnimatedNumber = ({ value, duration = 3000, delay = 0, shouldStart = false }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (!shouldStart) return;
 
     const timer = setTimeout(() => {
       setHasStarted(true);
+      setIsAnimating(true);
     }, delay);
 
     return () => clearTimeout(timer);
@@ -19,61 +21,104 @@ const AnimatedNumber = ({ value, duration = 2000, delay = 0, shouldStart = false
     if (!hasStarted) return;
 
     if (value === "∞") {
-      // Special handling for infinity symbol
-      setDisplayValue("∞");
-      return;
+      // Special infinity animation with morphing effect
+      const symbols = ["0", "8", "∞"];
+      let currentIndex = 0;
+      const morphTimer = setInterval(() => {
+        setDisplayValue(symbols[currentIndex]);
+        currentIndex++;
+        if (currentIndex >= symbols.length) {
+          clearInterval(morphTimer);
+          setTimeout(() => setIsAnimating(false), 500);
+        }
+      }, 400);
+      return () => clearInterval(morphTimer);
     }
 
     if (value === "24/7") {
-      // Special handling for 24/7
+      // Enhanced 24/7 animation with hour progression
       let current = 0;
-      const increment = 24 / (duration / 50);
+      const increment = 24 / (duration / 60);
       const timer = setInterval(() => {
         current += increment;
         if (current >= 24) {
           setDisplayValue("24/7");
           clearInterval(timer);
+          setTimeout(() => setIsAnimating(false), 500);
         } else {
           setDisplayValue(Math.floor(current).toString());
         }
-      }, 50);
+      }, 60);
       return () => clearInterval(timer);
     }
 
     if (value === "100%") {
-      // Special handling for percentage
+      // Smooth percentage animation with easing
       let current = 0;
-      const increment = 100 / (duration / 50);
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= 100) {
-          setDisplayValue("100%");
-          clearInterval(timer);
+      const startTime = Date.now();
+      
+      const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Cubic ease-out for smooth deceleration
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        current = Math.floor(easeOut * 100);
+        
+        setDisplayValue(current + "%");
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         } else {
-          setDisplayValue(Math.floor(current) + "%");
+          setTimeout(() => setIsAnimating(false), 500);
         }
-      }, 50);
-      return () => clearInterval(timer);
+      };
+      
+      requestAnimationFrame(animate);
+      return;
     }
 
-    // Default number animation
-    let current = 0;
+    // Default number animation with enhanced easing
     const target = parseInt(value) || 0;
-    const increment = target / (duration / 50);
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setDisplayValue(target);
-        clearInterval(timer);
+    let current = 0;
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Elastic ease-out for premium feel
+      const elasticOut = progress === 1 ? 1 : 
+        1 - Math.pow(2, -10 * progress) * Math.sin((progress * 10 - 0.75) * (2 * Math.PI) / 3);
+      
+      current = Math.floor(elasticOut * target);
+      setDisplayValue(current);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       } else {
-        setDisplayValue(Math.floor(current));
+        setTimeout(() => setIsAnimating(false), 500);
       }
-    }, 50);
-
-    return () => clearInterval(timer);
+    };
+    
+    requestAnimationFrame(animate);
   }, [value, duration, hasStarted]);
 
-  return <span>{displayValue}</span>;
+  return (
+    <span className={`relative inline-block transition-all duration-500 ${
+      isAnimating ? 'scale-110 text-[#5DB8FF]' : 'scale-100'
+    }`}>
+      {displayValue}
+      {isAnimating && (
+        <>
+          {/* Glowing backdrop */}
+          <div className="absolute inset-0 bg-[#5DB8FF] blur-xl opacity-30 animate-pulse"></div>
+          {/* Shimmer effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-pulse"></div>
+        </>
+      )}
+    </span>
+  );
 };
 
 const Hero = () => {
@@ -292,24 +337,79 @@ const Hero = () => {
             </button>
           </div>
 
-          {/* Enhanced stats with animated numbers - only animate when visible */}
-          <div ref={statsRef} className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {/* Premium stats with enhanced animated numbers */}
+          <div ref={statsRef} className="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
             {[
-              { value: "24/7", label: "Always Active", icon: "⚡", delay: 500 },
-              { value: "∞", label: "Infinite Scale", icon: "🚀", delay: 800 },
-              { value: "100%", label: "Authentic You", icon: "🧠", delay: 1100 }
+              { 
+                value: "24/7", 
+                label: "Always Active", 
+                icon: "⚡", 
+                delay: 600,
+                description: "Never sleeps, always working"
+              },
+              { 
+                value: "∞", 
+                label: "Infinite Scale", 
+                icon: "🚀", 
+                delay: 1000,
+                description: "Limitless possibilities"
+              },
+              { 
+                value: "100%", 
+                label: "Authentic You", 
+                icon: "🧠", 
+                delay: 1400,
+                description: "Perfectly captures your essence"
+              }
             ].map((stat, index) => (
-              <div key={index} className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
-                <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300">
-                  <AnimatedNumber 
-                    value={stat.value} 
-                    duration={2000} 
-                    delay={stat.delay}
-                    shouldStart={isStatsVisible}
-                  />
+              <div key={index} className="group relative">
+                {/* Enhanced card with premium styling */}
+                <div className="relative p-6 rounded-2xl bg-gradient-to-b from-gray-800/20 to-gray-900/40 border border-gray-700/30 backdrop-blur-sm hover:border-[#5DB8FF]/30 transition-all duration-500 hover:scale-105 hover:bg-gradient-to-b hover:from-[#5DB8FF]/5 hover:to-[#5DB8FF]/10">
+                  
+                  {/* Animated number with premium effects */}
+                  <div className="text-4xl md:text-5xl font-black text-white mb-3 relative">
+                    <AnimatedNumber 
+                      value={stat.value} 
+                      duration={2500} 
+                      delay={stat.delay}
+                      shouldStart={isStatsVisible}
+                    />
+                    
+                    {/* Floating icon with animation */}
+                    <div className="absolute -top-2 -right-2 text-2xl opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+                      {stat.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Enhanced labels */}
+                  <div className="text-[#5DB8FF] text-sm font-bold mb-2 group-hover:text-white transition-colors">
+                    {stat.label}
+                  </div>
+                  <div className="text-gray-400 text-xs leading-relaxed group-hover:text-gray-300 transition-colors">
+                    {stat.description}
+                  </div>
+
+                  {/* Premium glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/0 via-[#5DB8FF]/5 to-[#5DB8FF]/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                  
+                  {/* Subtle border animation */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-[#5DB8FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
                 </div>
-                <div className="text-gray-400 text-sm font-medium mb-2">{stat.label}</div>
-                <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">{stat.icon}</div>
+
+                {/* Floating particles on hover */}
+                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {[...Array(3)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full"
+                      style={{
+                        left: `${20 + Math.random() * 60}%`,
+                        top: `${20 + Math.random() * 60}%`,
+                        animation: `float ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s`
+                      }}
+                    ></div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
