@@ -139,23 +139,23 @@ const FloatingTechOrb = () => {
   }, [icons.length]);
 
   return (
-    <div className="absolute top-1/2 right-8 xl:right-16 transform -translate-y-1/2 hidden lg:block">
+    <div className="absolute top-24 right-8 xl:right-16 hidden lg:block z-20">
       {/* Main orb container */}
-      <div className="relative w-32 h-32">
+      <div className="relative w-28 h-28">
         {/* Central orb with pulsing glow */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#5DB8FF]/20 via-[#8CD5FF]/10 to-[#5DB8FF]/5 border border-[#5DB8FF]/30 backdrop-blur-sm">
-          {/* Rotating ring */}
-          <div className="absolute inset-2 rounded-full border-2 border-dashed border-[#5DB8FF]/40 animate-spin" style={{ animationDuration: '20s' }}></div>
+          {/* Rotating outer ring */}
+          <div className="absolute inset-1 rounded-full border-2 border-dashed border-[#5DB8FF]/40 animate-spin" style={{ animationDuration: '20s' }}></div>
           
           {/* Inner rotating ring */}
-          <div className="absolute inset-4 rounded-full border border-[#8CD5FF]/30 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
+          <div className="absolute inset-3 rounded-full border border-[#8CD5FF]/30 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
           
           {/* Central icon */}
           <div className="absolute inset-0 flex items-center justify-center">
             {icons.map((Icon, index) => (
               <Icon
                 key={index}
-                className={`w-8 h-8 absolute transition-all duration-500 ${
+                className={`w-7 h-7 absolute transition-all duration-500 ${
                   activeIcon === index
                     ? 'text-[#5DB8FF] scale-100 opacity-100'
                     : 'text-[#5DB8FF]/30 scale-75 opacity-0'
@@ -172,14 +172,14 @@ const FloatingTechOrb = () => {
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-3 h-3 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full"
+            className="absolute w-2.5 h-2.5 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full"
             style={{
               top: '50%',
               left: '50%',
               transformOrigin: '0 0',
               animation: `orbit ${8 + i * 2}s linear infinite`,
               animationDelay: `${i * 2}s`,
-              transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateX(60px)`
+              transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateX(50px)`
             }}
           >
             <div className="absolute inset-0 bg-[#5DB8FF] rounded-full blur-sm opacity-60"></div>
@@ -191,35 +191,35 @@ const FloatingTechOrb = () => {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-px h-8 bg-gradient-to-b from-[#5DB8FF]/60 to-transparent"
+              className="absolute w-px h-6 bg-gradient-to-b from-[#5DB8FF]/60 to-transparent"
               style={{
                 top: '50%',
                 left: '50%',
                 transformOrigin: '0 0',
                 animation: `dataStream ${4 + i}s ease-in-out infinite`,
                 animationDelay: `${i * 0.8}s`,
-                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateX(80px)`
+                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateX(70px)`
               }}
             ></div>
           ))}
         </div>
 
         {/* Floating text indicators */}
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-          <div className="text-xs text-[#5DB8FF] font-medium opacity-80 animate-pulse">
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+          <div className="text-xs text-[#5DB8FF] font-medium opacity-80 animate-pulse whitespace-nowrap">
             AI Processing
           </div>
         </div>
         
-        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="text-xs text-gray-400 font-medium opacity-60">
+        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+          <div className="text-xs text-gray-400 font-medium opacity-60 whitespace-nowrap">
             Neural Network
           </div>
         </div>
 
         {/* Connection lines to main content */}
-        <div className="absolute top-1/2 -left-20 w-16 h-px bg-gradient-to-r from-transparent to-[#5DB8FF]/30"></div>
-        <div className="absolute top-1/2 -left-16 w-2 h-2 bg-[#5DB8FF]/40 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/2 -left-16 w-12 h-px bg-gradient-to-r from-transparent to-[#5DB8FF]/30"></div>
+        <div className="absolute top-1/2 -left-12 w-1.5 h-1.5 bg-[#5DB8FF]/40 rounded-full animate-pulse"></div>
       </div>
     </div>
   );
@@ -384,7 +384,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/5 to-[#0D1117]/30"></div>
       </div>
 
-      {/* Floating Tech Orb */}
+      {/* Floating Tech Orb - Now positioned at top right */}
       <FloatingTechOrb />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
@@ -558,13 +558,13 @@ const Hero = () => {
         }
         
         @keyframes orbit {
-          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(60px); }
-          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(60px); }
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(50px); }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(50px); }
         }
         
         @keyframes dataStream {
-          0%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(80px) scaleY(0); }
-          50% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(80px) scaleY(1); }
+          0%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(70px) scaleY(0); }
+          50% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(70px) scaleY(1); }
         }
       `}</style>
     </section>
