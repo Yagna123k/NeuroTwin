@@ -105,19 +105,24 @@ const AnimatedNumber = ({ value, duration = 3000, delay = 0, shouldStart = false
   }, [value, duration, hasStarted]);
 
   return (
-    <span className={`relative inline-block transition-all duration-500 ${
-      isAnimating ? 'scale-110 text-[#5DB8FF]' : 'scale-100'
-    }`}>
-      {displayValue}
+    <div className="relative inline-flex items-center justify-center min-h-[4rem]">
+      <span className={`font-black text-4xl md:text-5xl transition-all duration-500 transform ${
+        isAnimating 
+          ? 'scale-110 text-[#5DB8FF] drop-shadow-[0_0_20px_rgba(93,184,255,0.5)]' 
+          : 'scale-100 text-white'
+      }`}>
+        {displayValue}
+      </span>
+      
       {isAnimating && (
         <>
-          {/* Glowing backdrop */}
-          <div className="absolute inset-0 bg-[#5DB8FF] blur-xl opacity-30 animate-pulse"></div>
+          {/* Enhanced glowing backdrop */}
+          <div className="absolute inset-0 bg-[#5DB8FF] blur-2xl opacity-40 animate-pulse rounded-full"></div>
           {/* Shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-pulse opacity-60"></div>
         </>
       )}
-    </span>
+    </div>
   );
 };
 
@@ -338,7 +343,7 @@ const Hero = () => {
           </div>
 
           {/* Premium stats with enhanced animated numbers */}
-          <div ref={statsRef} className="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div ref={statsRef} className="grid grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
             {[
               { 
                 value: "24/7", 
@@ -364,28 +369,28 @@ const Hero = () => {
             ].map((stat, index) => (
               <div key={index} className="group relative">
                 {/* Enhanced card with premium styling */}
-                <div className="relative p-6 rounded-2xl bg-gradient-to-b from-gray-800/20 to-gray-900/40 border border-gray-700/30 backdrop-blur-sm hover:border-[#5DB8FF]/30 transition-all duration-500 hover:scale-105 hover:bg-gradient-to-b hover:from-[#5DB8FF]/5 hover:to-[#5DB8FF]/10">
+                <div className="relative p-6 md:p-8 rounded-2xl bg-gradient-to-b from-gray-800/20 to-gray-900/40 border border-gray-700/30 backdrop-blur-sm hover:border-[#5DB8FF]/30 transition-all duration-500 hover:scale-105 hover:bg-gradient-to-b hover:from-[#5DB8FF]/5 hover:to-[#5DB8FF]/10 min-h-[200px] flex flex-col items-center justify-center text-center">
+                  
+                  {/* Floating icon with animation */}
+                  <div className="absolute top-4 right-4 text-xl md:text-2xl opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+                    {stat.icon}
+                  </div>
                   
                   {/* Animated number with premium effects */}
-                  <div className="text-4xl md:text-5xl font-black text-white mb-3 relative">
+                  <div className="mb-4">
                     <AnimatedNumber 
                       value={stat.value} 
                       duration={2500} 
                       delay={stat.delay}
                       shouldStart={isStatsVisible}
                     />
-                    
-                    {/* Floating icon with animation */}
-                    <div className="absolute -top-2 -right-2 text-2xl opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
-                      {stat.icon}
-                    </div>
                   </div>
                   
                   {/* Enhanced labels */}
-                  <div className="text-[#5DB8FF] text-sm font-bold mb-2 group-hover:text-white transition-colors">
+                  <div className="text-[#5DB8FF] text-sm md:text-base font-bold mb-2 group-hover:text-white transition-colors">
                     {stat.label}
                   </div>
-                  <div className="text-gray-400 text-xs leading-relaxed group-hover:text-gray-300 transition-colors">
+                  <div className="text-gray-400 text-xs md:text-sm leading-relaxed group-hover:text-gray-300 transition-colors max-w-[150px]">
                     {stat.description}
                   </div>
 
