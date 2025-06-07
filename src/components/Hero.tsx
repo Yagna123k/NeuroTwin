@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
 
-const AnimatedNumber = ({ value, duration = 2000, delay = 0 }) => {
+const AnimatedNumber = ({ value, duration = 2000, delay = 0, shouldStart = false }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
+    if (!shouldStart) return;
+
     const timer = setTimeout(() => {
       setHasStarted(true);
     }, delay);
 
     return () => clearTimeout(timer);
-  }, [delay]);
+  }, [delay, shouldStart]);
 
   useEffect(() => {
     if (!hasStarted) return;
@@ -76,13 +78,33 @@ const AnimatedNumber = ({ value, duration = 2000, delay = 0 }) => {
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isStatsVisible, setIsStatsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsStatsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
       {/* Premium AI Background with automatic animations */}
       <div className="absolute inset-0">
         {/* Base gradient with improved depth */}
@@ -270,8 +292,8 @@ const Hero = () => {
             </button>
           </div>
 
-          {/* Enhanced stats with animated numbers */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {/* Enhanced stats with animated numbers - only animate when visible */}
+          <div ref={statsRef} className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             {[
               { value: "24/7", label: "Always Active", icon: "⚡", delay: 500 },
               { value: "∞", label: "Infinite Scale", icon: "🚀", delay: 800 },
@@ -283,6 +305,7 @@ const Hero = () => {
                     value={stat.value} 
                     duration={2000} 
                     delay={stat.delay}
+                    shouldStart={isStatsVisible}
                   />
                 </div>
                 <div className="text-gray-400 text-sm font-medium mb-2">{stat.label}</div>
