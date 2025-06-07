@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,8 +12,8 @@ const Hero = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
+        x: (e.clientX / window.innerWidth) * 20, // Reduced from 100 to 20 for slower movement
+        y: (e.clientY / window.innerHeight) * 20, // Reduced from 100 to 20 for slower movement
       });
     };
 
@@ -28,11 +28,11 @@ const Hero = () => {
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A] via-[#0D1117] to-[#161B22]"></div>
         
-        {/* Interactive neural mesh */}
+        {/* Interactive neural mesh - slower movement */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 transition-all duration-1000 ease-out"
           style={{
-            background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(93, 184, 255, 0.15) 0%, transparent 50%)`
+            background: `radial-gradient(circle at ${50 + mousePosition.x}% ${50 + mousePosition.y}%, rgba(93, 184, 255, 0.15) 0%, transparent 50%)`
           }}
         ></div>
 
@@ -82,9 +82,9 @@ const Hero = () => {
           </svg>
         </div>
 
-        {/* Floating geometric elements */}
-        <div className="absolute top-1/4 left-1/6 w-32 h-32 border border-[#5DB8FF]/20 rotate-45 animate-spin" style={{animationDuration: '20s'}}></div>
-        <div className="absolute bottom-1/4 right-1/6 w-24 h-24 border border-[#5DB8FF]/15 rotate-12 animate-spin" style={{animationDuration: '25s', animationDirection: 'reverse'}}></div>
+        {/* Floating geometric elements - slower rotation */}
+        <div className="absolute top-1/4 left-1/6 w-32 h-32 border border-[#5DB8FF]/20 rotate-45 animate-spin" style={{animationDuration: '40s'}}></div>
+        <div className="absolute bottom-1/4 right-1/6 w-24 h-24 border border-[#5DB8FF]/15 rotate-12 animate-spin" style={{animationDuration: '50s', animationDirection: 'reverse'}}></div>
         
         {/* Premium glow effects */}
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-radial from-[#5DB8FF]/10 via-[#5DB8FF]/5 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '6s'}}></div>
@@ -94,7 +94,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/20 to-[#0D1117]/60"></div>
       </div>
 
-      <div className="relative z-10 max-w-8xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         <div className={`transition-all duration-1200 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           
           {/* Premium badge */}
@@ -104,34 +104,69 @@ const Hero = () => {
             <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
           </div>
 
-          {/* Main headline with premium typography */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[0.9] tracking-tight">
-            <span className="block mb-2">Turn Yourself</span>
-            <span className="block mb-2">Into</span>
-            <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative">
-              Software
-              <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] blur-2xl opacity-20"></div>
-            </span>
-          </h1>
+          {/* Main headline with increased width and better typography */}
+          <div className="max-w-6xl mx-auto mb-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[0.9] tracking-tight">
+              <span className="block mb-2">Turn Yourself</span>
+              <span className="block mb-2">Into</span>
+              <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative">
+                Software
+                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] blur-2xl opacity-20"></div>
+              </span>
+            </h1>
+          </div>
 
-          {/* Premium subheadline */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+          {/* Smaller caption with better spacing */}
+          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
             Create an intelligent digital twin that thinks, talks, and acts like you.{' '}
             <span className="text-[#5DB8FF]">Scale yourself infinitely</span> while you focus on what only you can do.
           </p>
 
-          {/* Premium CTA section */}
+          {/* Premium CTA section with impressive button */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
-            <button className="group relative px-10 py-5 bg-gradient-to-r from-[#5DB8FF] to-[#3A9EFF] rounded-2xl text-white font-bold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/30 flex items-center gap-4 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] to-[#3A9EFF] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-              <Zap className="w-6 h-6 relative z-10 group-hover:animate-pulse" />
-              <span className="relative z-10">Start Training Your Twin</span>
-              <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            {/* Ultra-premium CTA button */}
+            <button className="group relative px-12 py-6 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-bold text-lg transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:shadow-[#5DB8FF]/40 flex items-center gap-4 overflow-hidden border border-[#5DB8FF]/30">
+              {/* Animated background layers */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
+              {/* Floating particles inside button */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {[...Array(6)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white rounded-full animate-ping"
+                    style={{
+                      left: `${20 + i * 15}%`,
+                      top: `${30 + (i % 2) * 40}%`,
+                      animationDelay: `${i * 200}ms`,
+                      animationDuration: '2s'
+                    }}
+                  ></div>
+                ))}
+              </div>
+
+              {/* Button content */}
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="relative">
+                  <Zap className="w-6 h-6 group-hover:animate-pulse" />
+                  <div className="absolute inset-0 bg-white/30 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <span className="relative">Start Training Your Twin</span>
+                <div className="relative">
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-white/30 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+
+              {/* Outer glow effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-700 -z-10"></div>
             </button>
             
             <button className="group text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-3 text-lg">
-              <div className="w-14 h-14 border-2 border-gray-600 group-hover:border-[#5DB8FF] rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#5DB8FF]/10">
-                <Play className="w-6 h-6 ml-1" />
+              <div className="w-14 h-14 border-2 border-gray-600 group-hover:border-[#5DB8FF] rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#5DB8FF]/10 relative overflow-hidden">
+                <Play className="w-6 h-6 ml-1 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#5DB8FF]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </div>
               <span className="underline underline-offset-4 decoration-gray-600 group-hover:decoration-[#5DB8FF] transition-colors">Watch Demo</span>
             </button>
@@ -156,8 +191,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Premium scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      {/* Premium scroll indicator - moved to bottom right */}
+      <div className="absolute bottom-8 right-8">
         <div className="flex flex-col items-center gap-2 text-gray-500 animate-bounce">
           <div className="w-6 h-10 border-2 border-gray-700 rounded-full p-1">
             <div className="w-1 h-3 bg-gradient-to-b from-[#5DB8FF] to-transparent rounded-full animate-pulse"></div>
@@ -166,17 +201,17 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Floating particles */}
+      {/* Floating particles - much slower movement */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
+              animationDelay: `${Math.random() * 8}s`, // Increased delay range
+              animationDuration: `${6 + Math.random() * 8}s` // Much slower duration
             }}
           ></div>
         ))}
