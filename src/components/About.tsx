@@ -253,7 +253,7 @@ const TimelineItem = ({ item, index, isVisible }) => {
   );
 };
 
-const AboutPage = () => {
+const About = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
   const [visionVisible, setVisionVisible] = useState(false);
   const [philosophyVisible, setPhilosophyVisible] = useState(false);
@@ -625,4 +625,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default About;
