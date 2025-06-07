@@ -170,7 +170,7 @@ const FounderCard = ({ founder, index, isVisible }) => {
         setIsHovered(false);
       }}
     >
-      <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-xl border border-white/10 hover:border-[#5DB8FF]/40 transition-all duration-500 hover:bg-gradient-to-br hover:from-[#5DB8FF]/50 hover:via-[#8CD5FF] hover:to-[#5DB8FF]/50 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-[#5DB8FF]/20 h-full overflow-hidden">
+      <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-xl border border-white/10 transition-all duration-500 ease-in-out hover:scale-[1.03] hover:border-[#5DB8FF]/50 hover:shadow-[0_12px_30px_-4px_rgba(93,184,255,0.3)] hover:bg-gradient-to-br hover:from-[#5DB8FF]/10 hover:via-[#8CD5FF]/20 hover:to-[#5DB8FF]/10 group-hover:scale-[1.03] h-full overflow-hidden">
         
         {/* Enhanced avatar with floating ring */}
         <div className="relative mb-6">
