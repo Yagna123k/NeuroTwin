@@ -1,6 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
 
+const AnimatedNumber = ({ value, duration = 2000, delay = 0 }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasStarted(true);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    if (value === "∞") {
+      // Special handling for infinity symbol
+      setDisplayValue("∞");
+      return;
+    }
+
+    if (value === "24/7") {
+      // Special handling for 24/7
+      let current = 0;
+      const increment = 24 / (duration / 50);
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= 24) {
+          setDisplayValue("24/7");
+          clearInterval(timer);
+        } else {
+          setDisplayValue(Math.floor(current).toString());
+        }
+      }, 50);
+      return () => clearInterval(timer);
+    }
+
+    if (value === "100%") {
+      // Special handling for percentage
+      let current = 0;
+      const increment = 100 / (duration / 50);
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= 100) {
+          setDisplayValue("100%");
+          clearInterval(timer);
+        } else {
+          setDisplayValue(Math.floor(current) + "%");
+        }
+      }, 50);
+      return () => clearInterval(timer);
+    }
+
+    // Default number animation
+    let current = 0;
+    const target = parseInt(value) || 0;
+    const increment = target / (duration / 50);
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setDisplayValue(target);
+        clearInterval(timer);
+      } else {
+        setDisplayValue(Math.floor(current));
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, [value, duration, hasStarted]);
+
+  return <span>{displayValue}</span>;
+};
+
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -197,16 +270,20 @@ const Hero = () => {
             </button>
           </div>
 
-          {/* Enhanced stats with better visual hierarchy */}
+          {/* Enhanced stats with animated numbers */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             {[
-              { value: "24/7", label: "Always Active", icon: "⚡" },
-              { value: "∞", label: "Infinite Scale", icon: "🚀" },
-              { value: "100%", label: "Authentic You", icon: "🧠" }
+              { value: "24/7", label: "Always Active", icon: "⚡", delay: 500 },
+              { value: "∞", label: "Infinite Scale", icon: "🚀", delay: 800 },
+              { value: "100%", label: "Authentic You", icon: "🧠", delay: 1100 }
             ].map((stat, index) => (
               <div key={index} className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
                 <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300">
-                  {stat.value}
+                  <AnimatedNumber 
+                    value={stat.value} 
+                    duration={2000} 
+                    delay={stat.delay}
+                  />
                 </div>
                 <div className="text-gray-400 text-sm font-medium mb-2">{stat.label}</div>
                 <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">{stat.icon}</div>
