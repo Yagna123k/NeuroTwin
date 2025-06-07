@@ -22,7 +22,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
       {/* Premium AI Background with smoother animations */}
       <div className="absolute inset-0">
         {/* Base gradient */}
@@ -98,7 +98,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/20 to-[#0D1117]/60"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-8xl mx-auto px-6 text-center">
         <div className={`transition-all duration-1500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           
           {/* Premium badge */}
@@ -108,14 +108,14 @@ const Hero = () => {
             <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
           </div>
 
-          {/* Main headline with increased width and better typography */}
-          <div className="max-w-6xl mx-auto mb-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[0.9] tracking-tight">
-              <span className="block mb-2">Turn Yourself</span>
-              <span className="block mb-2">Into</span>
+          {/* Main headline with significantly increased size and width */}
+          <div className="max-w-8xl mx-auto mb-8">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-black text-white leading-[0.85] tracking-tight">
+              <span className="block mb-4">Turn Yourself</span>
+              <span className="block mb-4">Into</span>
               <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative">
                 Software
-                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] blur-2xl opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] blur-3xl opacity-20"></div>
               </span>
             </h1>
           </div>
