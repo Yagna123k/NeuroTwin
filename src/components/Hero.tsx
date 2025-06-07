@@ -1,12 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [animatedNumbers, setAnimatedNumbers] = useState({
+    hours: 0,
+    scale: 0,
+    authenticity: 0
+  });
+  const numbersRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Animated number counter hook
+  const animateNumber = (start: number, end: number, duration: number, callback: (value: number) => void) => {
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(start + (end - start) * easeOutQuart);
+      
+      callback(current);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !animatedNumbers.authenticity) {
+          // Animate 24 (for 24/7)
+          animateNumber(0, 24, 2000, (value) => {
+            setAnimatedNumbers(prev => ({ ...prev, hours: value }));
+          });
+
+          // Animate scale number (let's use 1000 for visual impact)
+          setTimeout(() => {
+            animateNumber(0, 1000, 2500, (value) => {
+              setAnimatedNumbers(prev => ({ ...prev, scale: value }));
+            });
+          }, 500);
+
+          // Animate authenticity percentage
+          setTimeout(() => {
+            animateNumber(0, 100, 2000, (value) => {
+              setAnimatedNumbers(prev => ({ ...prev, authenticity: value }));
+            });
+          }, 1000);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (numbersRef.current) {
+      observer.observe(numbersRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [animatedNumbers.authenticity]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
@@ -197,21 +257,53 @@ const Hero = () => {
             </button>
           </div>
 
-          {/* Enhanced stats with better visual hierarchy */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            {[
-              { value: "24/7", label: "Always Active", icon: "⚡" },
-              { value: "∞", label: "Infinite Scale", icon: "🚀" },
-              { value: "100%", label: "Authentic You", icon: "🧠" }
-            ].map((stat, index) => (
-              <div key={index} className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
-                <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300">
-                  {stat.value}
-                </div>
-                <div className="text-gray-400 text-sm font-medium mb-2">{stat.label}</div>
-                <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">{stat.icon}</div>
+          {/* Enhanced stats with animated numbers */}
+          <div ref={numbersRef} className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300 relative">
+                <span className="tabular-nums">
+                  {animatedNumbers.hours}
+                </span>
+                <span className="text-2xl">/7</span>
+                {/* Subtle glow effect during animation */}
+                <div className={`absolute inset-0 bg-[#5DB8FF]/20 blur-lg rounded-lg transition-opacity duration-500 ${
+                  animatedNumbers.hours > 0 && animatedNumbers.hours < 24 ? 'opacity-100' : 'opacity-0'
+                }`}></div>
               </div>
-            ))}
+              <div className="text-gray-400 text-sm font-medium mb-2">Always Active</div>
+              <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">⚡</div>
+            </div>
+
+            <div className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300 relative">
+                {animatedNumbers.scale === 1000 ? (
+                  <span>∞</span>
+                ) : (
+                  <span className="tabular-nums">{animatedNumbers.scale}</span>
+                )}
+                {/* Subtle glow effect during animation */}
+                <div className={`absolute inset-0 bg-[#5DB8FF]/20 blur-lg rounded-lg transition-opacity duration-500 ${
+                  animatedNumbers.scale > 0 && animatedNumbers.scale < 1000 ? 'opacity-100' : 'opacity-0'
+                }`}></div>
+              </div>
+              <div className="text-gray-400 text-sm font-medium mb-2">Infinite Scale</div>
+              <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">🚀</div>
+            </div>
+
+            <div className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300 relative">
+                <span className="tabular-nums">
+                  {animatedNumbers.authenticity}
+                </span>
+                <span className="text-2xl">%</span>
+                {/* Subtle glow effect during animation */}
+                <div className={`absolute inset-0 bg-[#5DB8FF]/20 blur-lg rounded-lg transition-opacity duration-500 ${
+                  animatedNumbers.authenticity > 0 && animatedNumbers.authenticity < 100 ? 'opacity-100' : 'opacity-0'
+                }`}></div>
+              </div>
+              <div className="text-gray-400 text-sm font-medium mb-2">Authentic You</div>
+              <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">🧠</div>
+            </div>
           </div>
         </div>
       </div>
