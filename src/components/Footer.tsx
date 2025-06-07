@@ -110,7 +110,7 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-gray-800">
           <div className="text-gray-400 text-sm mb-4 sm:mb-0">
-            © 2024 NeuroTwin. All rights reserved.
+            © 2025 NeuroTwin. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-gray-400">
             <span>Made with 🧠 for the future</span>
