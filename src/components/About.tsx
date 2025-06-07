@@ -271,7 +271,7 @@ const About = () => {
   const philosophies = [
     {
       icon: Brain,
-      quote: "One mind. Infinite selves.",
+      quote: "The power of you — multiplied.",
       description: "Your consciousness shouldn't be limited to one body, one voice, or one moment in time.",
       gradient: "from-[#5DB8FF] to-[#8CD5FF]"
     },
