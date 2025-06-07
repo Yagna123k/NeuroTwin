@@ -341,7 +341,7 @@ const TimelineItem = ({ item, index, isVisible }) => {
   );
 };
 
-const About = () => {
+const AboutPage = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
   const [visionVisible, setVisionVisible] = useState(false);
   const [philosophyVisible, setPhilosophyVisible] = useState(false);
