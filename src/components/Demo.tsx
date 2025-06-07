@@ -116,78 +116,171 @@ const VideoPlayer = ({ isVisible }) => {
         <div className="absolute inset-0 bg-gradient-to-br from-[#0D1117] via-[#161B22] to-[#0D1117] flex items-center justify-center">
           
           {/* Neural activity visualization */}
-          <div className="relative w-full h-full flex items-center justify-center">
-            {/* Central brain */}
-            <div className="relative">
-              <div className="w-32 h-32 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full flex items-center justify-center shadow-2xl animate-pulse">
-                <Brain className="w-16 h-16 text-white" />
+          <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+            {/* Central brain with improved animation */}
+            <div className="relative z-10">
+              <div className="w-32 h-32 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full flex items-center justify-center shadow-2xl">
+                <Brain className="w-16 h-16 text-white animate-pulse" style={{ animationDuration: '2s' }} />
               </div>
               
-              {/* Pulsing rings */}
-              <div className="absolute inset-0 border-2 border-[#5DB8FF]/30 rounded-full animate-ping"></div>
-              <div className="absolute inset-0 border-2 border-[#8CD5FF]/20 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+              {/* Improved pulsing rings */}
+              <div className="absolute inset-0 border-2 border-[#5DB8FF]/40 rounded-full animate-ping" style={{ animationDuration: '3s' }}></div>
+              <div className="absolute -inset-4 border-2 border-[#8CD5FF]/30 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
+              <div className="absolute -inset-8 border border-[#5DB8FF]/20 rounded-full animate-ping" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
               
-              {/* Data streams */}
-              {[...Array(8)].map((_, i) => (
+              {/* Enhanced data streams with better positioning */}
+              {[...Array(12)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute w-1 h-8 bg-gradient-to-t from-[#5DB8FF] to-transparent"
+                  className="absolute"
                   style={{
                     top: '50%',
                     left: '50%',
                     transformOrigin: '0 0',
-                    animation: `dataFlow ${3 + i * 0.5}s ease-in-out infinite`,
-                    animationDelay: `${i * 0.3}s`,
-                    transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-80px)`
+                    transform: `translate(-50%, -50%) rotate(${i * 30}deg)`,
+                  }}
+                >
+                  <div
+                    className="w-1 bg-gradient-to-t from-[#5DB8FF] via-[#8CD5FF] to-transparent rounded-full"
+                    style={{
+                      height: `${20 + Math.sin(i * 0.5) * 15}px`,
+                      animation: `dataStream ${2 + (i % 3) * 0.5}s ease-in-out infinite`,
+                      animationDelay: `${i * 0.2}s`,
+                      transform: `translateY(-${80 + Math.cos(i * 0.3) * 20}px)`,
+                    }}
+                  />
+                </div>
+              ))}
+
+              {/* Orbiting data points */}
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-2 h-2 bg-[#5DB8FF] rounded-full"
+                  style={{
+                    top: '50%',
+                    left: '50%',
+                    animation: `orbit ${8 + i * 2}s linear infinite`,
+                    animationDelay: `${i * 0.5}s`,
+                    transformOrigin: '0 0',
+                    transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateX(${100 + i * 10}px)`
                   }}
                 />
               ))}
             </div>
 
-            {/* Floating UI elements */}
-            <div className="absolute top-8 left-8 bg-black/50 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-              <div className="flex items-center gap-2 text-white text-sm">
-                <Activity className="w-4 h-4 text-green-400" />
-                <span>Neural Processing Active</span>
+            {/* Background neural network */}
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 800 600">
+                <defs>
+                  <linearGradient id="videoNeuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#5DB8FF" stopOpacity="0.6"/>
+                    <stop offset="50%" stopColor="#8CD5FF" stopOpacity="0.3"/>
+                    <stop offset="100%" stopColor="#5DB8FF" stopOpacity="0.1"/>
+                  </linearGradient>
+                </defs>
+                
+                {/* Flowing connections */}
+                {[...Array(6)].map((_, i) => (
+                  <path 
+                    key={i}
+                    d={`M${50 + i * 120},${100 + Math.sin(i) * 80} Q${200 + i * 80},${80 + Math.cos(i) * 60} ${350 + i * 70},${100 + Math.sin(i * 1.5) * 100}`}
+                    stroke="url(#videoNeuralGradient)" 
+                    strokeWidth="1" 
+                    fill="none"
+                    className="animate-pulse"
+                    style={{
+                      animationDuration: `${4 + i * 0.5}s`,
+                      animationDelay: `${i * 0.3}s`
+                    }}
+                  />
+                ))}
+                
+                {/* Neural nodes */}
+                {[...Array(15)].map((_, i) => (
+                  <circle
+                    key={i}
+                    cx={80 + (i * 50)}
+                    cy={150 + Math.sin(i * 0.8) * 100}
+                    r="1.5"
+                    fill="#5DB8FF"
+                    className="animate-pulse"
+                    style={{
+                      animationDelay: `${i * 0.2}s`,
+                      animationDuration: '3s'
+                    }}
+                  />
+                ))}
+              </svg>
+            </div>
+
+            {/* Enhanced floating UI elements */}
+            <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-md rounded-xl p-4 border border-white/20 shadow-lg">
+              <div className="flex items-center gap-3 text-white text-sm">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="font-medium">Neural Processing Active</span>
+              </div>
+              <div className="mt-2 flex items-center gap-2 text-xs text-gray-300">
+                <Activity className="w-3 h-3" />
+                <span>Learning patterns...</span>
               </div>
             </div>
 
-            <div className="absolute bottom-8 right-8 bg-black/50 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-              <div className="flex items-center gap-2 text-white text-sm">
+            <div className="absolute bottom-6 right-6 bg-black/60 backdrop-blur-md rounded-xl p-4 border border-white/20 shadow-lg">
+              <div className="flex items-center gap-3 text-white text-sm">
                 <Clock className="w-4 h-4 text-[#5DB8FF]" />
-                <span>Real-time Learning</span>
+                <span className="font-medium">Real-time Learning</span>
+              </div>
+              <div className="mt-2 text-xs text-gray-300">
+                Processing 1.2k events/sec
+              </div>
+            </div>
+
+            {/* Additional status indicators */}
+            <div className="absolute top-6 right-6 bg-black/60 backdrop-blur-md rounded-xl p-3 border border-white/20 shadow-lg">
+              <div className="flex items-center gap-2 text-white text-xs">
+                <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
+                <span>Memory: 94%</span>
+              </div>
+            </div>
+
+            <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md rounded-xl p-3 border border-white/20 shadow-lg">
+              <div className="flex items-center gap-2 text-white text-xs">
+                <Sparkles className="w-3 h-3 text-yellow-400" />
+                <span>Personas: 3 Active</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Play button overlay */}
-        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
-          isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+          isPlaying ? 'opacity-0 pointer-events-none scale-75' : 'opacity-100 scale-100'
         }`}>
           <button 
             onClick={() => setIsPlaying(!isPlaying)}
-            className="group/play w-24 h-24 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 border-4 border-white/20 hover:border-white/40"
+            className="group/play relative w-24 h-24 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 border-4 border-white/20 hover:border-white/40"
           >
             {isPlaying ? (
-              <Pause className="w-10 h-10 text-white ml-1" />
+              <Pause className="w-10 h-10 text-white" />
             ) : (
               <Play className="w-10 h-10 text-white ml-1" />
             )}
             
-            {/* Ripple effect */}
-            <div className="absolute inset-0 bg-[#5DB8FF] rounded-full animate-ping opacity-30 group-hover/play:opacity-50"></div>
+            {/* Enhanced ripple effects */}
+            <div className="absolute inset-0 bg-[#5DB8FF] rounded-full animate-ping opacity-20 group-hover/play:opacity-40" style={{ animationDuration: '2s' }}></div>
+            <div className="absolute inset-0 bg-[#8CD5FF] rounded-full animate-ping opacity-15 group-hover/play:opacity-30" style={{ animationDuration: '3s', animationDelay: '0.5s' }}></div>
           </button>
         </div>
 
-        {/* Video controls */}
-        <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 transition-all duration-300 ${
+        {/* Enhanced video controls */}
+        <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-6 transition-all duration-500 ${
           showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+              className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20"
             >
               {isPlaying ? (
                 <Pause className="w-5 h-5 text-white" />
@@ -196,25 +289,36 @@ const VideoPlayer = ({ isVisible }) => {
               )}
             </button>
             
-            <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-[#5DB8FF] to-[#8CD5FF] rounded-full w-1/3 transition-all duration-300"></div>
+            <div className="flex-1 h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+              <div className="h-full bg-gradient-to-r from-[#5DB8FF] to-[#8CD5FF] rounded-full transition-all duration-300" style={{ width: isPlaying ? '45%' : '0%' }}></div>
             </div>
             
-            <button className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+            <div className="text-white text-sm font-mono">
+              {isPlaying ? '2:34' : '0:00'} / 5:42
+            </div>
+            
+            <button className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20">
               <Volume2 className="w-5 h-5 text-white" />
             </button>
           </div>
         </div>
 
-        {/* Glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#5DB8FF]/10 via-transparent to-[#8CD5FF]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        {/* Enhanced glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#5DB8FF]/5 via-transparent to-[#8CD5FF]/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        
+        {/* Border glow animation */}
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DB8FF]/20 via-[#8CD5FF]/30 to-[#5DB8FF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10"></div>
       </div>
 
-      {/* Video caption */}
-      <div className="text-center mt-6">
-        <p className="text-gray-400 text-lg italic">
+      {/* Enhanced video caption */}
+      <div className="text-center mt-8">
+        <p className="text-gray-400 text-lg italic mb-2">
           "This is how your second brain works for you."
         </p>
+        <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+          <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
+          <span>Live neural processing demonstration</span>
+        </div>
       </div>
     </div>
   );
@@ -570,10 +674,10 @@ const Demo = () => {
           100% { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--radius, 120px)); }
         }
         
-        @keyframes dataFlow {
-          0% { transform: translate(-50%, -50%) rotate(var(--rotation)) translateY(-80px) scaleY(0); opacity: 0; }
-          50% { transform: translate(-50%, -50%) rotate(var(--rotation)) translateY(-80px) scaleY(1); opacity: 1; }
-          100% { transform: translate(-50%, -50%) rotate(var(--rotation)) translateY(-80px) scaleY(0); opacity: 0; }
+        @keyframes dataStream {
+          0% { opacity: 0; transform: scaleY(0); }
+          50% { opacity: 1; transform: scaleY(1); }
+          100% { opacity: 0; transform: scaleY(0); }
         }
       `}</style>
     </div>
