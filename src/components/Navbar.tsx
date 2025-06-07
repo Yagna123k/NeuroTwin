@@ -16,6 +16,11 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll to top when location changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
   const navLinks = [
     { label: 'Features', href: '/features' },
     { label: 'How It Works', href: '/how-it-works' },
@@ -31,6 +36,12 @@ const Navbar = () => {
     return location.pathname === href;
   };
 
+  const handleNavClick = () => {
+    // Close mobile menu and scroll to top
+    setIsMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -42,7 +53,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16">
             
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group cursor-pointer">
+            <Link to="/" className="flex items-center gap-3 group cursor-pointer" onClick={handleNavClick}>
               <div className="relative">
                 <Brain className="w-8 h-8 text-[#5DB8FF]" />
                 <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
@@ -58,6 +69,7 @@ const Navbar = () => {
                     key={index}
                     href={link.href}
                     className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
+                    onClick={handleNavClick}
                   >
                     {link.label}
                   </a>
@@ -70,6 +82,7 @@ const Navbar = () => {
                         ? 'text-[#5DB8FF]'
                         : 'text-gray-400 hover:text-white'
                     }`}
+                    onClick={handleNavClick}
                   >
                     {link.label}
                   </Link>
@@ -104,7 +117,7 @@ const Navbar = () => {
         {/* Content */}
         <div className="relative flex flex-col h-full px-6 py-16">
           {/* Mobile brand section */}
-          <Link to="/" className="flex items-center gap-3 mb-12" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link to="/" className="flex items-center gap-3 mb-12" onClick={handleNavClick}>
             <div className="relative">
               <Brain className="w-8 h-8 text-[#5DB8FF]" />
               <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
@@ -119,7 +132,7 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={handleNavClick}
                   className="block text-gray-400 hover:text-white transition-colors text-lg"
                 >
                   {link.label}
@@ -128,7 +141,7 @@ const Navbar = () => {
                 <Link
                   key={index}
                   to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={handleNavClick}
                   className={`block transition-colors text-lg ${
                     isActive(link.href)
                       ? 'text-[#5DB8FF]'
