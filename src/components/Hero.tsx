@@ -22,15 +22,6 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {/* Logo/Brand */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="relative">
-              <Brain className="w-12 h-12 text-[#5DB8FF] animate-pulse" />
-              <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30 animate-pulse"></div>
-            </div>
-            <span className="ml-4 text-2xl font-bold text-white">NeuroTwin</span>
-          </div>
-
           {/* Main headline */}
           <h1 className="text-6xl md:text-8xl font-black text-white mb-6 leading-tight">
             Turn Yourself Into{' '}
