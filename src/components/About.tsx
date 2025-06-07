@@ -172,82 +172,85 @@ const FounderCard = ({ founder, index, isVisible }) => {
     >
       <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-xl border border-white/10 hover:border-[#5DB8FF]/40 transition-all duration-500  group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-[#5DB8FF]/20 h-full overflow-hidden">
         
-        {/* Enhanced avatar with floating ring */}
-        <div className="relative mb-6">
-          <div className="relative">
-            {/* Outer rotating ring */}
-            <div className={`absolute inset-0 w-24 h-24 mx-auto rounded-2xl border-2 border-dashed transition-all duration-700 ${
-              isHovered ? 'border-[#5DB8FF] animate-spin' : 'border-transparent'
-            }`} style={{ animationDuration: '8s' }}></div>
-            
-            {/* Inner pulsing ring */}
-            <div className={`absolute inset-1 w-22 h-22 mx-auto rounded-2xl border transition-all duration-500 ${
-              isHovered ? 'border-[#8CD5FF]/60 animate-pulse' : 'border-transparent'
-            }`}></div>
-            
-            {/* Main avatar */}
-            <div className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} flex items-center justify-center shadow-2xl mx-auto transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-              <span className="text-3xl font-black text-white transition-all duration-300 group-hover:scale-110">
-                {founder.name.split(' ').map(n => n[0]).join('')}
-              </span>
+        {/* Main content - hidden when showing quote */}
+        <div className={`transition-all duration-500 ${showQuote ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}>
+          {/* Enhanced avatar with floating ring */}
+          <div className="relative mb-6">
+            <div className="relative">
+              {/* Outer rotating ring */}
+              <div className={`absolute inset-0 w-24 h-24 mx-auto rounded-2xl border-2 border-dashed transition-all duration-700 ${
+                isHovered ? 'border-[#5DB8FF] animate-spin' : 'border-transparent'
+              }`} style={{ animationDuration: '8s' }}></div>
               
-              {/* Shimmer effect */}
-              <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-2xl transition-all duration-700 ${
-                isHovered ? 'translate-x-full' : '-translate-x-full'
-              }`} style={{ transform: isHovered ? 'translateX(100%)' : 'translateX(-100%)' }}></div>
+              {/* Inner pulsing ring */}
+              <div className={`absolute inset-1 w-22 h-22 mx-auto rounded-2xl border transition-all duration-500 ${
+                isHovered ? 'border-[#8CD5FF]/60 animate-pulse' : 'border-transparent'
+              }`}></div>
+              
+              {/* Main avatar */}
+              <div className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${founder.gradient} flex items-center justify-center shadow-2xl mx-auto transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                <span className="text-3xl font-black text-white transition-all duration-300 group-hover:scale-110">
+                  {founder.name.split(' ').map(n => n[0]).join('')}
+                </span>
+                
+                {/* Shimmer effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-2xl transition-all duration-700 ${
+                  isHovered ? 'translate-x-full' : '-translate-x-full'
+                }`} style={{ transform: isHovered ? 'translateX(100%)' : 'translateX(-100%)' }}></div>
+              </div>
             </div>
-          </div>
-          
-          {/* Enhanced status indicator */}
-          <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
-            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-            {/* Pulse rings */}
-            <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
-            <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-50" style={{ animationDelay: '0.5s' }}></div>
+            
+            {/* Enhanced status indicator */}
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              {/* Pulse rings */}
+              <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+              <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-50" style={{ animationDelay: '0.5s' }}></div>
+            </div>
+
+            {/* Floating particles around avatar */}
+            {isHovered && (
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-1.5 h-1.5 bg-[#5DB8FF] rounded-full animate-pulse"
+                    style={{
+                      left: `${30 + Math.random() * 40}%`,
+                      top: `${30 + Math.random() * 40}%`,
+                      animation: `float ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s`,
+                      animationDelay: `${i * 100}ms`
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Floating particles around avatar */}
-          {isHovered && (
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1.5 h-1.5 bg-[#5DB8FF] rounded-full animate-pulse"
-                  style={{
-                    left: `${30 + Math.random() * 40}%`,
-                    top: `${30 + Math.random() * 40}%`,
-                    animation: `float ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s`,
-                    animationDelay: `${i * 100}ms`
-                  }}
-                />
-              ))}
+          {/* Enhanced content */}
+          <div className="text-center space-y-4 relative z-10">
+            <h3 className="text-2xl font-bold text-white group-hover:text-[#8CD5FF] transition-all duration-300 group-hover:scale-105">
+              {founder.name}
+            </h3>
+            
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full border border-white/20 group-hover:border-[#5DB8FF]/40 group-hover:bg-[#5DB8FF]/10 transition-all duration-300">
+              <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-white">{founder.role}</span>
             </div>
-          )}
+            
+            <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+              {founder.bio}
+            </p>
+          </div>
         </div>
 
-        {/* Enhanced content */}
-        <div className="text-center space-y-4 relative z-10">
-          <h3 className="text-2xl font-bold text-white group-hover:text-[#8CD5FF] transition-all duration-300 group-hover:scale-105">
-            {founder.name}
-          </h3>
-          
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full border border-white/20 group-hover:border-[#5DB8FF]/40 group-hover:bg-[#5DB8FF]/10 transition-all duration-300">
-            <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-white">{founder.role}</span>
-          </div>
-          
-          <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-            {founder.bio}
-          </p>
-        </div>
-
-        {/* Enhanced quote overlay with improved readability */}
+        {/* Quote overlay - only visible on hover */}
         <div className={`absolute inset-0 rounded-3xl flex items-center justify-center p-8 transition-all duration-700 ${
           showQuote ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
         }`} style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(22, 27, 34, 0.98) 50%, rgba(13, 17, 23, 0.95) 100%)',
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.98) 0%, rgba(22, 27, 34, 0.99) 50%, rgba(13, 17, 23, 0.98) 100%)',
           backdropFilter: 'blur(20px)',
-          border: '1px solid rgba(93, 184, 255, 0.3)'
+          border: '1px solid rgba(93, 184, 255, 0.4)'
         }}>
           <div className="text-center relative">
             {/* Quote icon with animation */}
@@ -259,7 +262,7 @@ const FounderCard = ({ founder, index, isVisible }) => {
             <blockquote className={`text-xl font-bold text-white italic leading-relaxed transition-all duration-700 drop-shadow-lg ${
               showQuote ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`} style={{
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(93, 184, 255, 0.3)'
+              textShadow: '0 4px 12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(93, 184, 255, 0.4)'
             }}>
               "{founder.quote}"
             </blockquote>
@@ -267,9 +270,6 @@ const FounderCard = ({ founder, index, isVisible }) => {
             {/* Decorative elements with better visibility */}
             <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#5DB8FF] rounded-tl-lg opacity-80"></div>
             <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#5DB8FF] rounded-br-lg opacity-80"></div>
-            
-            {/* Additional background for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0D1117]/80 via-[#161B22]/90 to-[#0D1117]/80 rounded-3xl -z-10"></div>
           </div>
         </div>
 
