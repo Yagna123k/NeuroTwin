@@ -280,4 +280,24 @@ const UseCases = () => {
                   onClick={() => setActiveUseCase(index)}
                   className={`transition-all duration-300 ${
                     index === activeUseCase 
-                      ? 'w
+                      ? 'w-4 h-1.5 bg-[#5DB8FF] rounded-full'
+                      : 'w-1.5 h-1.5 bg-gray-700 rounded-full hover:bg-gray-600'
+                  }`}
+                ></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(180deg); }
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default UseCases;
