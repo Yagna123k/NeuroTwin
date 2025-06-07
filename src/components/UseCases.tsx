@@ -71,16 +71,16 @@ const UseCases = () => {
   }, [useCases.length]);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gradient-to-b from-primary-800 to-primary-900 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-gradient-to-b from-[#161B22] to-[#0D1117] relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
           
           {/* Section header */}
           <div className="text-center mb-20">
             <h2 className="text-5xl font-bold text-white mb-6">
-              Scale <span className="bg-gradient-to-r from-silver-200 via-silver-100 to-silver-300 bg-clip-text text-transparent">Yourself</span> Across Everything
+              Scale <span className="text-[#5DB8FF]">Yourself</span> Across Everything
             </h2>
-            <p className="text-xl text-silver-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Your digital twin handles routine tasks, maintains relationships, and creates content — 
               freeing you to focus on what only you can do.
             </p>
@@ -95,27 +95,27 @@ const UseCases = () => {
                   key={index}
                   className={`group cursor-pointer p-6 rounded-2xl border transition-all duration-500 ${
                     activeUseCase === index
-                      ? 'bg-gradient-to-r from-silver-500/10 to-silver-600/5 border-silver-500/50 scale-105'
-                      : 'bg-primary-800/20 border-silver-700/30 hover:border-silver-600/50'
+                      ? 'bg-gradient-to-r from-[#5DB8FF]/10 to-[#5DB8FF]/5 border-[#5DB8FF]/50 scale-105'
+                      : 'bg-gray-800/20 border-gray-700/30 hover:border-gray-600/50'
                   }`}
                   onClick={() => setActiveUseCase(index)}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                       activeUseCase === index
-                        ? 'bg-silver-500/20'
-                        : 'bg-primary-700/50 group-hover:bg-primary-600/50'
+                        ? 'bg-[#5DB8FF]/20'
+                        : 'bg-gray-700/50 group-hover:bg-gray-600/50'
                     }`}>
-                      <useCase.icon className={`w-6 h-6 ${activeUseCase === index ? 'text-silver-300' : 'text-silver-400 group-hover:text-silver-300'}`} />
+                      <useCase.icon className={`w-6 h-6 ${activeUseCase === index ? 'text-[#5DB8FF]' : 'text-gray-400 group-hover:text-gray-300'}`} />
                     </div>
                     <div className="flex-1">
                       <h3 className={`text-lg font-bold mb-2 transition-colors ${
-                        activeUseCase === index ? 'text-white' : 'text-silver-300 group-hover:text-white'
+                        activeUseCase === index ? 'text-white' : 'text-gray-300 group-hover:text-white'
                       }`}>
                         {useCase.title}
                       </h3>
                       <p className={`text-sm leading-relaxed transition-colors ${
-                        activeUseCase === index ? 'text-silver-300' : 'text-silver-400'
+                        activeUseCase === index ? 'text-gray-300' : 'text-gray-400'
                       }`}>
                         {useCase.description}
                       </p>
@@ -127,29 +127,29 @@ const UseCases = () => {
 
             {/* Active use case details */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-primary-800/50 to-primary-900/70 p-8 rounded-3xl border border-silver-700/30 backdrop-blur-sm">
+              <div className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 p-8 rounded-3xl border border-gray-700/30 backdrop-blur-sm">
                 <div className="mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-silver-500/20 to-silver-600/10 rounded-3xl flex items-center justify-center mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-br from-[#5DB8FF]/20 to-[#5DB8FF]/5 rounded-3xl flex items-center justify-center mb-4">
                     {React.createElement(useCases[activeUseCase].icon, { 
-                      className: "w-10 h-10 text-silver-300" 
+                      className: "w-10 h-10 text-[#5DB8FF]" 
                     })}
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-3">
                     {useCases[activeUseCase].title}
                   </h3>
-                  <p className="text-silver-300 leading-relaxed mb-6">
+                  <p className="text-gray-300 leading-relaxed mb-6">
                     {useCases[activeUseCase].details}
                   </p>
                 </div>
 
                 {/* Visual indicator */}
-                <div className="flex items-center gap-3 text-sm text-silver-400">
+                <div className="flex items-center gap-3 text-sm text-gray-400">
                   <div className="flex gap-1">
                     {useCases.map((_, index) => (
                       <div
                         key={index}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === activeUseCase ? 'bg-silver-400 w-6' : 'bg-silver-600'
+                          index === activeUseCase ? 'bg-[#5DB8FF] w-6' : 'bg-gray-600'
                         }`}
                       />
                     ))}
@@ -159,8 +159,8 @@ const UseCases = () => {
               </div>
 
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-silver-500/20 rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-silver-400/10 rounded-full animate-pulse delay-1000"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#5DB8FF]/20 rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#5DB8FF]/10 rounded-full animate-pulse delay-1000"></div>
             </div>
 
           </div>
