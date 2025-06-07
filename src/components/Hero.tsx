@@ -105,7 +105,7 @@ const Hero = () => {
           </div>
 
           {/* Main headline with premium typography */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-[0.9] tracking-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[0.9] tracking-tight">
             <span className="block mb-2">Turn Yourself</span>
             <span className="block mb-2">Into</span>
             <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative">
