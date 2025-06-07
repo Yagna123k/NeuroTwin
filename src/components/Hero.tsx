@@ -106,7 +106,7 @@ const Hero = () => {
 
           {/* Perfectly sized headline - unicorn premium level */}
           <div className="max-w-6xl mx-auto mb-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-white leading-[0.9] tracking-tight">
               <span className="block mb-3">Turn Yourself</span>
               <span className="block mb-3">Into</span>
               <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative">
