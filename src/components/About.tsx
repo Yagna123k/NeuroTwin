@@ -192,6 +192,7 @@ const FounderCard = ({ founder, index, isVisible }) => {
                 <span className="text-3xl font-black text-white transition-all duration-300 group-hover:scale-110">
                   {founder.name.split(' ').map(n => n[0]).join('')}
                 </span>
+              </div>
             </div>
             
             {/* Enhanced status indicator */}
