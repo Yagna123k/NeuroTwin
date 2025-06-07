@@ -12,8 +12,8 @@ const Hero = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
-        x: (e.clientX / window.innerWidth) * 20, // Reduced from 100 to 20 for slower movement
-        y: (e.clientY / window.innerHeight) * 20, // Reduced from 100 to 20 for slower movement
+        x: (e.clientX / window.innerWidth) * 15, // Further reduced for ultra-smooth movement
+        y: (e.clientY / window.innerHeight) * 15, // Further reduced for ultra-smooth movement
       });
     };
 
@@ -22,21 +22,21 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Premium AI Background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+      {/* Premium AI Background with smoother animations */}
       <div className="absolute inset-0">
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A] via-[#0D1117] to-[#161B22]"></div>
         
-        {/* Interactive neural mesh - slower movement */}
+        {/* Interactive neural mesh - ultra-smooth movement */}
         <div 
-          className="absolute inset-0 opacity-20 transition-all duration-1000 ease-out"
+          className="absolute inset-0 opacity-20 transition-all duration-[2000ms] ease-out"
           style={{
             background: `radial-gradient(circle at ${50 + mousePosition.x}% ${50 + mousePosition.y}%, rgba(93, 184, 255, 0.15) 0%, transparent 50%)`
           }}
         ></div>
 
-        {/* Animated neural network */}
+        {/* Animated neural network with smoother timing */}
         <div className="absolute inset-0 opacity-30">
           <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -54,14 +54,14 @@ const Hero = () => {
               </filter>
             </defs>
             
-            {/* Dynamic neural connections */}
-            <g className="animate-pulse" style={{animationDuration: '8s'}}>
+            {/* Dynamic neural connections with smoother pulse */}
+            <g className="animate-pulse" style={{animationDuration: '12s'}}>
               <path d="M100,200 Q300,150 500,200 T900,180" stroke="url(#connectionGradient)" strokeWidth="1" fill="none" filter="url(#glow)"/>
               <path d="M200,400 Q400,350 600,400 T1000,380" stroke="url(#connectionGradient)" strokeWidth="1" fill="none" filter="url(#glow)"/>
               <path d="M150,600 Q350,550 550,600 T950,580" stroke="url(#connectionGradient)" strokeWidth="1" fill="none" filter="url(#glow)"/>
             </g>
             
-            {/* Floating data nodes */}
+            {/* Floating data nodes with staggered smooth animations */}
             <g>
               {[...Array(12)].map((_, i) => (
                 <circle
@@ -72,8 +72,8 @@ const Hero = () => {
                   fill="#5DB8FF"
                   className="animate-pulse"
                   style={{
-                    animationDelay: `${i * 0.5}s`,
-                    animationDuration: '3s'
+                    animationDelay: `${i * 0.8}s`,
+                    animationDuration: '4s'
                   }}
                   filter="url(#glow)"
                 />
@@ -82,20 +82,24 @@ const Hero = () => {
           </svg>
         </div>
 
-        {/* Floating geometric elements - slower rotation */}
-        <div className="absolute top-1/4 left-1/6 w-32 h-32 border border-[#5DB8FF]/20 rotate-45 animate-spin" style={{animationDuration: '40s'}}></div>
-        <div className="absolute bottom-1/4 right-1/6 w-24 h-24 border border-[#5DB8FF]/15 rotate-12 animate-spin" style={{animationDuration: '50s', animationDirection: 'reverse'}}></div>
+        {/* Floating geometric elements - ultra-slow smooth rotation */}
+        <div className="absolute top-1/4 left-1/6 w-32 h-32 border border-[#5DB8FF]/20 rotate-45 animate-spin" style={{animationDuration: '60s', animationTimingFunction: 'linear'}}></div>
+        <div className="absolute bottom-1/4 right-1/6 w-24 h-24 border border-[#5DB8FF]/15 rotate-12 animate-spin" style={{animationDuration: '80s', animationDirection: 'reverse', animationTimingFunction: 'linear'}}></div>
         
-        {/* Premium glow effects */}
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-radial from-[#5DB8FF]/10 via-[#5DB8FF]/5 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '6s'}}></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-[#8CD5FF]/8 via-[#5DB8FF]/4 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '8s', animationDelay: '2s'}}></div>
+        {/* Premium glow effects with smoother breathing */}
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-radial from-[#5DB8FF]/10 via-[#5DB8FF]/5 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '8s', animationTimingFunction: 'ease-in-out'}}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-[#8CD5FF]/8 via-[#5DB8FF]/4 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '10s', animationDelay: '3s', animationTimingFunction: 'ease-in-out'}}></div>
+        
+        {/* Additional smooth floating orbs */}
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-radial from-[#5DB8FF]/5 to-transparent rounded-full blur-2xl animate-pulse" style={{animationDuration: '15s', animationDelay: '5s', animationTimingFunction: 'ease-in-out'}}></div>
+        <div className="absolute bottom-1/2 right-1/3 w-48 h-48 bg-gradient-radial from-[#8CD5FF]/6 to-transparent rounded-full blur-2xl animate-pulse" style={{animationDuration: '12s', animationDelay: '7s', animationTimingFunction: 'ease-in-out'}}></div>
         
         {/* Depth overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/20 to-[#0D1117]/60"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        <div className={`transition-all duration-1200 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+        <div className={`transition-all duration-1500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           
           {/* Premium badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#5DB8FF]/10 to-[#8CD5FF]/10 border border-[#5DB8FF]/20 rounded-full text-[#5DB8FF] text-sm font-medium mb-8 backdrop-blur-sm">
@@ -201,17 +205,18 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Floating particles - much slower movement */}
+      {/* Floating particles - ultra-smooth movement */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`, // Increased delay range
-              animationDuration: `${6 + Math.random() * 8}s` // Much slower duration
+              animationDelay: `${Math.random() * 12}s`, // Increased delay range
+              animationDuration: `${8 + Math.random() * 12}s`, // Ultra-slow duration
+              animationTimingFunction: 'ease-in-out'
             }}
           ></div>
         ))}
