@@ -20,8 +20,8 @@ const Navbar = () => {
     { label: 'Features', href: '/features' },
     { label: 'How It Works', href: '/how-it-works' },
     { label: 'Pricing', href: '/pricing' },
-    { label: 'Developers', href: '#developers' },
-    { label: 'About', href: '#about' }
+    { label: 'About', href: '/about' },
+    { label: 'Developers', href: '#developers' }
   ];
 
   const isActive = (href) => {
