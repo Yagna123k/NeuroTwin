@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, Twitter, Github, Linkedin, Mail } from 'lucide-react';
+import { Twitter, Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
   const footerLinks = {
@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-t from-[#0D1117] to-[#161B22] border-t border-gray-800">
+    <footer className="bg-gradient-to-t from-primary-900 to-primary-800 border-t border-silver-800">
       <div className="max-w-6xl mx-auto px-6 py-16">
         
         {/* Main footer content */}
@@ -47,12 +47,18 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <div className="relative">
-                <Brain className="w-8 h-8 text-[#5DB8FF]" />
-                <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
+                <img 
+                  src="/NeuroTwin Logo.png" 
+                  alt="NeuroTwin" 
+                  className="w-8 h-8 object-contain"
+                />
+                <div className="absolute inset-0 bg-silver-300 blur-lg opacity-20"></div>
               </div>
-              <span className="text-xl font-bold text-white">NeuroTwin</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-silver-200 to-silver-400 bg-clip-text text-transparent">
+                NeuroTwin
+              </span>
             </div>
-            <p className="text-gray-400 leading-relaxed mb-6 max-w-sm">
+            <p className="text-silver-400 leading-relaxed mb-6 max-w-sm">
               Turn yourself into software. Create your intelligent digital twin that works while you don't.
             </p>
             <div className="flex items-center gap-4">
@@ -60,10 +66,10 @@ const Footer = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors group"
+                  className="w-10 h-10 bg-primary-800 hover:bg-primary-700 rounded-lg flex items-center justify-center transition-colors group border border-silver-700/30"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                  <social.icon className="w-5 h-5 text-silver-400 group-hover:text-white transition-colors" />
                 </a>
               ))}
             </div>
@@ -78,7 +84,7 @@ const Footer = () => {
                   <li key={index}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors text-sm"
+                      className="text-silver-400 hover:text-white transition-colors text-sm"
                     >
                       {link.label}
                     </a>
@@ -90,17 +96,17 @@ const Footer = () => {
         </div>
 
         {/* Newsletter signup */}
-        <div className="bg-gradient-to-r from-gray-800/30 to-gray-900/30 rounded-2xl p-8 border border-gray-700/30 mb-12">
+        <div className="bg-gradient-to-r from-primary-800/40 to-primary-900/40 rounded-2xl p-8 border border-silver-700/30 mb-12">
           <div className="max-w-md">
             <h3 className="text-xl font-bold text-white mb-2">Stay Updated</h3>
-            <p className="text-gray-400 mb-4 text-sm">Get the latest updates on NeuroTwin development and AI news.</p>
+            <p className="text-silver-400 mb-4 text-sm">Get the latest updates on NeuroTwin development and AI news.</p>
             <div className="flex gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#5DB8FF] transition-colors"
+                className="flex-1 px-4 py-3 bg-primary-800 border border-silver-700 rounded-lg text-white placeholder-silver-400 focus:outline-none focus:border-silver-500 transition-colors"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-[#5DB8FF] to-[#3A9EFF] rounded-lg text-white font-medium hover:scale-105 transition-transform">
+              <button className="px-6 py-3 bg-gradient-to-r from-silver-600 to-silver-500 rounded-lg text-white font-medium hover:scale-105 transition-transform">
                 Subscribe
               </button>
             </div>
@@ -108,11 +114,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom section */}
-        <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-gray-800">
-          <div className="text-gray-400 text-sm mb-4 sm:mb-0">
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-silver-800">
+          <div className="text-silver-400 text-sm mb-4 sm:mb-0">
             © 2024 NeuroTwin. All rights reserved.
           </div>
-          <div className="flex items-center gap-6 text-sm text-gray-400">
+          <div className="flex items-center gap-6 text-sm text-silver-400">
             <span>Made with 🧠 for the future</span>
             <div className="flex items-center gap-1">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
