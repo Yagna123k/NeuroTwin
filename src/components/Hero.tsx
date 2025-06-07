@@ -155,7 +155,7 @@ const Hero = () => {
             <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-white leading-[0.85] tracking-tight">
               <span className="block mb-4">Turn Yourself</span>
               <span className="block mb-4">Into</span>
-              <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block">
+              <span className="bg-gradient-to-r from-[#5DB8FF]/50 via-[#8CD5FF] to-[#5DB8FF]/50 bg-clip-text text-transparent relative inline-block">
                 Software
                 <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] blur-2xl opacity-20 animate-pulse"></div>
               </span>
