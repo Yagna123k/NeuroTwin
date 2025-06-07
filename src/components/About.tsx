@@ -241,26 +241,35 @@ const FounderCard = ({ founder, index, isVisible }) => {
           </p>
         </div>
 
-        {/* Enhanced quote overlay with smooth transitions */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-[#5DB8FF]/30 via-[#8CD5FF]/20 to-[#5DB8FF]/30 backdrop-blur-md rounded-3xl flex items-center justify-center p-8 transition-all duration-700 ${
+        {/* Enhanced quote overlay with improved readability */}
+        <div className={`absolute inset-0 rounded-3xl flex items-center justify-center p-8 transition-all duration-700 ${
           showQuote ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-        }`}>
+        }`} style={{
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(22, 27, 34, 0.98) 50%, rgba(13, 17, 23, 0.95) 100%)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(93, 184, 255, 0.3)'
+        }}>
           <div className="text-center relative">
             {/* Quote icon with animation */}
             <div className={`transition-all duration-500 ${showQuote ? 'scale-100 rotate-0' : 'scale-75 rotate-45'}`}>
               <Quote className="w-8 h-8 text-[#5DB8FF] mx-auto mb-4" />
             </div>
             
-            {/* Quote text with typewriter effect */}
-            <blockquote className={`text-xl font-bold text-white italic leading-relaxed transition-all duration-700 ${
+            {/* Quote text with enhanced contrast */}
+            <blockquote className={`text-xl font-bold text-white italic leading-relaxed transition-all duration-700 drop-shadow-lg ${
               showQuote ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-            }`}>
+            }`} style={{
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(93, 184, 255, 0.3)'
+            }}>
               "{founder.quote}"
             </blockquote>
             
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#5DB8FF]/40 rounded-tl-lg"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#5DB8FF]/40 rounded-br-lg"></div>
+            {/* Decorative elements with better visibility */}
+            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#5DB8FF] rounded-tl-lg opacity-80"></div>
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#5DB8FF] rounded-br-lg opacity-80"></div>
+            
+            {/* Additional background for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0D1117]/80 via-[#161B22]/90 to-[#0D1117]/80 rounded-3xl -z-10"></div>
           </div>
         </div>
 
