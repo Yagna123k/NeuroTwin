@@ -10,26 +10,26 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
-      {/* Premium AI Background with centered automatic animations */}
+      {/* Premium AI Background with automatic animations */}
       <div className="absolute inset-0">
         {/* Base gradient with improved depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A] via-[#0D1117] to-[#161B22]"></div>
         
-        {/* Centered automatic flowing neural mesh */}
+        {/* Automatic flowing neural mesh */}
         <div className="absolute inset-0 opacity-20">
           <div 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full animate-pulse"
+            className="absolute inset-0 animate-pulse"
             style={{
-              background: `radial-gradient(circle at 50% 50%, rgba(93, 184, 255, 0.15) 0%, transparent 50%), 
-                          radial-gradient(circle at 40% 30%, rgba(140, 213, 255, 0.12) 0%, transparent 50%),
-                          radial-gradient(circle at 60% 70%, rgba(93, 184, 255, 0.08) 0%, transparent 50%)`,
+              background: `radial-gradient(circle at 30% 40%, rgba(93, 184, 255, 0.15) 0%, transparent 50%), 
+                          radial-gradient(circle at 70% 60%, rgba(140, 213, 255, 0.12) 0%, transparent 50%),
+                          radial-gradient(circle at 50% 80%, rgba(93, 184, 255, 0.08) 0%, transparent 50%)`,
               animationDuration: '8s',
               animationTimingFunction: 'ease-in-out'
             }}
           ></div>
         </div>
 
-        {/* Enhanced neural network with centered automatic movement */}
+        {/* Enhanced neural network with automatic movement */}
         <div className="absolute inset-0 opacity-30">
           <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -47,10 +47,10 @@ const Hero = () => {
               </filter>
             </defs>
             
-            {/* Centered flowing neural connections with automatic animation */}
-            <g transform="translate(600, 400)">
+            {/* Flowing neural connections with automatic animation */}
+            <g>
               <path 
-                d="M-400,-100 Q-200,-150 0,-100 T400,-120" 
+                d="M100,200 Q300,150 500,200 T900,180" 
                 stroke="url(#connectionGradient)" 
                 strokeWidth="1.5" 
                 fill="none" 
@@ -59,7 +59,7 @@ const Hero = () => {
                 style={{animationDuration: '6s', animationDelay: '0s'}}
               />
               <path 
-                d="M-300,100 Q-100,50 100,100 T500,80" 
+                d="M200,400 Q400,350 600,400 T1000,380" 
                 stroke="url(#connectionGradient)" 
                 strokeWidth="1.5" 
                 fill="none" 
@@ -68,7 +68,7 @@ const Hero = () => {
                 style={{animationDuration: '8s', animationDelay: '2s'}}
               />
               <path 
-                d="M-450,0 Q-250,-20 -50,20 T350,0" 
+                d="M150,600 Q350,550 550,600 T950,580" 
                 stroke="url(#connectionGradient)" 
                 strokeWidth="1.5" 
                 fill="none" 
@@ -77,7 +77,7 @@ const Hero = () => {
                 style={{animationDuration: '7s', animationDelay: '4s'}}
               />
               <path 
-                d="M-350,-200 Q-150,-180 50,-160 T450,-180" 
+                d="M50,300 Q250,280 450,320 T850,300" 
                 stroke="url(#connectionGradient)" 
                 strokeWidth="1" 
                 fill="none" 
@@ -87,13 +87,13 @@ const Hero = () => {
               />
             </g>
             
-            {/* Enhanced data nodes with centered staggered animation */}
-            <g transform="translate(600, 400)">
+            {/* Enhanced data nodes with staggered animation */}
+            <g>
               {[...Array(12)].map((_, i) => (
                 <circle
                   key={i}
-                  cx={-400 + (i * 70)}
-                  cy={Math.sin(i * 0.8) * 80}
+                  cx={100 + (i * 90)}
+                  cy={250 + Math.sin(i * 0.8) * 120}
                   r="2"
                   fill="#5DB8FF"
                   className="animate-pulse"
@@ -108,37 +108,33 @@ const Hero = () => {
           </svg>
         </div>
 
-        {/* Centered automatic floating geometric elements */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="absolute -top-32 -left-32 w-24 h-24 border border-[#5DB8FF]/20 rotate-45" 
-               style={{
-                 animation: 'spin 60s linear infinite, float 8s ease-in-out infinite'
-               }}></div>
-          <div className="absolute top-32 left-32 w-20 h-20 border border-[#5DB8FF]/15 rotate-12" 
-               style={{
-                 animation: 'spin 80s linear infinite reverse, float 10s ease-in-out infinite 2s'
-               }}></div>
-          <div className="absolute -top-16 left-48 w-16 h-16 border border-[#8CD5FF]/10 rotate-45"
-               style={{
-                 animation: 'spin 100s linear infinite, float 12s ease-in-out infinite 4s'
-               }}></div>
-        </div>
+        {/* Automatic floating geometric elements */}
+        <div className="absolute top-1/4 left-1/6 w-24 h-24 border border-[#5DB8FF]/20 rotate-45" 
+             style={{
+               animation: 'spin 60s linear infinite, float 8s ease-in-out infinite'
+             }}></div>
+        <div className="absolute bottom-1/4 right-1/6 w-20 h-20 border border-[#5DB8FF]/15 rotate-12" 
+             style={{
+               animation: 'spin 80s linear infinite reverse, float 10s ease-in-out infinite 2s'
+             }}></div>
+        <div className="absolute top-1/2 left-1/12 w-16 h-16 border border-[#8CD5FF]/10 rotate-45"
+             style={{
+               animation: 'spin 100s linear infinite, float 12s ease-in-out infinite 4s'
+             }}></div>
         
-        {/* Enhanced centered automatic glow effects */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="absolute -top-48 -left-48 w-96 h-96 bg-gradient-radial from-[#5DB8FF]/12 via-[#5DB8FF]/4 to-transparent rounded-full blur-3xl" 
-               style={{
-                 animation: 'pulse 10s ease-in-out infinite, float 15s ease-in-out infinite'
-               }}></div>
-          <div className="absolute top-48 left-48 w-80 h-80 bg-gradient-radial from-[#8CD5FF]/10 via-[#5DB8FF]/3 to-transparent rounded-full blur-3xl" 
-               style={{
-                 animation: 'pulse 12s ease-in-out infinite 3s, float 18s ease-in-out infinite 6s'
-               }}></div>
-          <div className="absolute top-16 -left-32 w-64 h-64 bg-gradient-radial from-[#5DB8FF]/8 via-[#8CD5FF]/2 to-transparent rounded-full blur-3xl"
-               style={{
-                 animation: 'pulse 14s ease-in-out infinite 6s, float 20s ease-in-out infinite 10s'
-               }}></div>
-        </div>
+        {/* Enhanced automatic glow effects */}
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-radial from-[#5DB8FF]/12 via-[#5DB8FF]/4 to-transparent rounded-full blur-3xl" 
+             style={{
+               animation: 'pulse 10s ease-in-out infinite, float 15s ease-in-out infinite'
+             }}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-[#8CD5FF]/10 via-[#5DB8FF]/3 to-transparent rounded-full blur-3xl" 
+             style={{
+               animation: 'pulse 12s ease-in-out infinite 3s, float 18s ease-in-out infinite 6s'
+             }}></div>
+        <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-gradient-radial from-[#5DB8FF]/8 via-[#8CD5FF]/2 to-transparent rounded-full blur-3xl"
+             style={{
+               animation: 'pulse 14s ease-in-out infinite 6s, float 20s ease-in-out infinite 10s'
+             }}></div>
         
         {/* Improved depth overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/5 to-[#0D1117]/30"></div>
@@ -154,23 +150,14 @@ const Hero = () => {
             <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
           </div>
 
-          {/* Premium enhanced headline with improved typography */}
+          {/* Perfectly balanced headline */}
           <div className="max-w-6xl mx-auto mb-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[0.8] tracking-tight">
-              <span className="block mb-6 relative">
-                <span className="relative z-10">Turn Yourself</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
-              </span>
-              <span className="block mb-6 relative">
-                <span className="relative z-10">Into</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
-              </span>
-              <span className="block relative">
-                <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] via-[#FFFFFF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block bg-[length:200%_100%] animate-[shimmer_3s_ease-in-out_infinite]">
-                  Software
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/30 via-[#8CD5FF]/50 to-[#5DB8FF]/30 blur-3xl opacity-40 animate-pulse"></div>
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#5DB8FF]/20 via-[#8CD5FF]/30 to-[#5DB8FF]/20 blur-2xl opacity-60 animate-pulse delay-1000"></div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-white leading-[0.85] tracking-tight">
+              <span className="block mb-4">Turn Yourself</span>
+              <span className="block mb-4">Into</span>
+              <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block">
+                Software
+                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/50 via-[#8CD5FF] to-[#5DB8FF]/50 blur-2xl opacity-20 animate-pulse"></div>
               </span>
             </h1>
           </div>
@@ -239,21 +226,19 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Centered auto-animated floating particles */}
+      {/* Auto-animated floating particles */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
-          {[...Array(15)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full"
-              style={{
-                left: `${45 + Math.random() * 10}%`,
-                top: `${45 + Math.random() * 10}%`,
-                animation: `float ${8 + Math.random() * 12}s ease-in-out infinite ${Math.random() * 8}s, pulse ${4 + Math.random() * 6}s ease-in-out infinite ${Math.random() * 4}s`
-              }}
-            ></div>
-          ))}
-        </div>
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${8 + Math.random() * 12}s ease-in-out infinite ${Math.random() * 8}s, pulse ${4 + Math.random() * 6}s ease-in-out infinite ${Math.random() * 4}s`
+            }}
+          ></div>
+        ))}
       </div>
 
       {/* Custom CSS for animations */}
@@ -263,11 +248,6 @@ const Hero = () => {
           25% { transform: translateY(-20px) translateX(10px); }
           50% { transform: translateY(-10px) translateX(-5px); }
           75% { transform: translateY(-30px) translateX(15px); }
-        }
-        
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
         }
       `}</style>
     </section>
