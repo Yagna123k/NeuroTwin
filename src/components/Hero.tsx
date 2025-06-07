@@ -143,73 +143,114 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         <div className={`transition-all duration-1200 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           
-          {/* Enhanced premium badge */}
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-[#5DB8FF]/10 to-[#8CD5FF]/10 border border-[#5DB8FF]/25 rounded-full text-[#5DB8FF] text-sm font-medium mb-8 backdrop-blur-sm hover:border-[#5DB8FF]/40 transition-all duration-300">
+          {/* Enhanced premium badge with better typography */}
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#5DB8FF]/15 via-[#8CD5FF]/10 to-[#5DB8FF]/15 border border-[#5DB8FF]/30 rounded-full text-[#5DB8FF] text-sm font-semibold mb-10 backdrop-blur-sm hover:border-[#5DB8FF]/50 transition-all duration-300 shadow-lg shadow-[#5DB8FF]/10">
             <Sparkles className="w-4 h-4 animate-pulse" />
-            <span>The Future of Digital Identity</span>
+            <span className="tracking-wide">The Future of Digital Identity</span>
             <div className="w-2 h-2 bg-[#5DB8FF] rounded-full animate-pulse"></div>
           </div>
 
-          {/* Perfectly balanced headline */}
-          <div className="max-w-6xl mx-auto mb-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-white leading-[0.85] tracking-tight">
-              <span className="block mb-4">Turn Yourself</span>
-              <span className="block mb-4">Into</span>
-              <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block">
-                Software
-                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/50 via-[#8CD5FF] to-[#5DB8FF]/50 blur-2xl opacity-20 animate-pulse"></div>
+          {/* Revolutionary headline with enhanced typography */}
+          <div className="max-w-7xl mx-auto mb-10">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.8] tracking-tighter">
+              {/* Enhanced text shadow and letter spacing */}
+              <span className="block mb-6 drop-shadow-2xl" style={{
+                textShadow: '0 0 40px rgba(93, 184, 255, 0.3), 0 0 80px rgba(93, 184, 255, 0.1)'
+              }}>
+                Turn Yourself
+              </span>
+              
+              <span className="block mb-6 drop-shadow-2xl" style={{
+                textShadow: '0 0 40px rgba(93, 184, 255, 0.3), 0 0 80px rgba(93, 184, 255, 0.1)'
+              }}>
+                Into
+              </span>
+              
+              {/* Enhanced "Software" with multiple effects */}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] via-[#FFFFFF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent bg-[length:200%_100%] animate-[shimmer_3s_ease-in-out_infinite]">
+                  Software
+                </span>
+                
+                {/* Multiple glow layers for depth */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] blur-3xl opacity-30 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#FFFFFF] to-[#5DB8FF] blur-xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+                
+                {/* Subtle particle effect around the word */}
+                <div className="absolute -inset-4">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full opacity-60"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s`
+                      }}
+                    ></div>
+                  ))}
+                </div>
               </span>
             </h1>
           </div>
 
-          {/* Improved caption with better hierarchy */}
-          <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-            Create an intelligent digital twin that thinks, talks, and acts like you.{' '}
-            <span className="text-[#5DB8FF] font-medium">Scale yourself infinitely</span> while you focus on what only you can do.
-          </p>
+          {/* Enhanced subtitle with better typography hierarchy */}
+          <div className="max-w-3xl mx-auto mb-14">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 leading-relaxed font-light tracking-wide">
+              Create an intelligent digital twin that{' '}
+              <span className="text-white font-medium">thinks</span>,{' '}
+              <span className="text-white font-medium">talks</span>, and{' '}
+              <span className="text-white font-medium">acts</span> like you.
+            </p>
+            <p className="text-lg md:text-xl text-[#5DB8FF] font-semibold mt-4 tracking-wide">
+              Scale yourself infinitely while you focus on what only you can do.
+            </p>
+          </div>
 
-          {/* Enhanced CTA section */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-            {/* Premium CTA button with improved effects */}
-            <button className="group relative px-10 py-5 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-semibold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/30 flex items-center gap-3 overflow-hidden border border-[#5DB8FF]/30">
+          {/* Enhanced CTA section with better spacing */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-20">
+            {/* Premium CTA button with enhanced effects */}
+            <button className="group relative px-12 py-6 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-bold text-xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/40 flex items-center gap-4 overflow-hidden border border-[#5DB8FF]/40 shadow-xl shadow-[#5DB8FF]/20">
               {/* Enhanced background effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               
               {/* Button content */}
-              <div className="relative z-10 flex items-center gap-3">
-                <Zap className="w-5 h-5 group-hover:animate-pulse" />
-                <span>Start Training Your Twin</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <div className="relative z-10 flex items-center gap-4">
+                <Zap className="w-6 h-6 group-hover:animate-pulse" />
+                <span className="tracking-wide">Start Training Your Twin</span>
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
 
               {/* Enhanced outer glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-2xl blur opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-3xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500 -z-10"></div>
             </button>
             
             {/* Enhanced demo button */}
-            <button className="group text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-3">
-              <div className="w-12 h-12 border-2 border-gray-600 group-hover:border-[#5DB8FF] rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#5DB8FF]/10 relative overflow-hidden">
-                <Play className="w-5 h-5 ml-0.5 relative z-10" />
+            <button className="group text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-4">
+              <div className="w-14 h-14 border-2 border-gray-600 group-hover:border-[#5DB8FF] rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#5DB8FF]/10 relative overflow-hidden shadow-lg">
+                <Play className="w-6 h-6 ml-0.5 relative z-10" />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#5DB8FF]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </div>
-              <span className="underline underline-offset-4 decoration-gray-600 group-hover:decoration-[#5DB8FF] transition-colors font-medium">Watch Demo</span>
+              <span className="underline underline-offset-4 decoration-gray-600 group-hover:decoration-[#5DB8FF] transition-colors font-semibold text-lg tracking-wide">Watch Demo</span>
             </button>
           </div>
 
-          {/* Enhanced stats with better visual hierarchy */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {/* Enhanced stats with premium styling */}
+          <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
             {[
-              { value: "24/7", label: "Always Active", icon: "⚡" },
-              { value: "∞", label: "Infinite Scale", icon: "🚀" },
-              { value: "100%", label: "Authentic You", icon: "🧠" }
+              { value: "24/7", label: "Always Active", icon: "⚡", color: "from-blue-500 to-cyan-500" },
+              { value: "∞", label: "Infinite Scale", icon: "🚀", color: "from-purple-500 to-pink-500" },
+              { value: "100%", label: "Authentic You", icon: "🧠", color: "from-green-500 to-emerald-500" }
             ].map((stat, index) => (
-              <div key={index} className="group text-center p-4 rounded-xl hover:bg-[#5DB8FF]/5 transition-all duration-300">
-                <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:text-[#5DB8FF] transition-colors duration-300">
+              <div key={index} className="group text-center p-6 rounded-2xl hover:bg-gradient-to-br hover:from-[#5DB8FF]/5 hover:to-[#8CD5FF]/5 transition-all duration-500 border border-transparent hover:border-[#5DB8FF]/20 backdrop-blur-sm">
+                <div className={`text-4xl md:text-5xl font-black text-white mb-3 group-hover:bg-gradient-to-r group-hover:${stat.color} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500`} style={{
+                  textShadow: '0 0 20px rgba(93, 184, 255, 0.3)'
+                }}>
                   {stat.value}
                 </div>
-                <div className="text-gray-400 text-sm font-medium mb-2">{stat.label}</div>
-                <div className="text-xl opacity-40 group-hover:opacity-80 transition-opacity duration-300">{stat.icon}</div>
+                <div className="text-gray-400 text-sm font-semibold mb-3 tracking-wide uppercase">{stat.label}</div>
+                <div className="text-2xl opacity-50 group-hover:opacity-90 transition-opacity duration-500 group-hover:scale-110 transform">{stat.icon}</div>
               </div>
             ))}
           </div>
@@ -218,17 +259,17 @@ const Hero = () => {
 
       {/* Enhanced scroll indicator - bottom right */}
       <div className="absolute bottom-8 right-8">
-        <div className="flex flex-col items-center gap-2 text-gray-500 hover:text-gray-400 transition-colors cursor-pointer group">
-          <div className="w-5 h-8 border-2 border-gray-700 group-hover:border-gray-600 rounded-full p-1 transition-colors">
-            <div className="w-1 h-2 bg-gradient-to-b from-[#5DB8FF] to-transparent rounded-full animate-pulse"></div>
+        <div className="flex flex-col items-center gap-3 text-gray-500 hover:text-gray-400 transition-colors cursor-pointer group">
+          <div className="w-6 h-10 border-2 border-gray-700 group-hover:border-gray-600 rounded-full p-1 transition-colors shadow-lg">
+            <div className="w-2 h-3 bg-gradient-to-b from-[#5DB8FF] to-transparent rounded-full animate-pulse"></div>
           </div>
-          <span className="text-xs font-medium">Scroll</span>
+          <span className="text-xs font-semibold tracking-wide uppercase">Scroll</span>
         </div>
       </div>
 
       {/* Auto-animated floating particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full"
@@ -241,13 +282,23 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Custom CSS for animations */}
+      {/* Custom CSS for enhanced animations */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) translateX(0px); }
           25% { transform: translateY(-20px) translateX(10px); }
           50% { transform: translateY(-10px) translateX(-5px); }
           75% { transform: translateY(-30px) translateX(15px); }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.5); }
         }
       `}</style>
     </section>
