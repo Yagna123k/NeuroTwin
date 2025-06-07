@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Play, Sparkles, Zap, Star } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Zap, Star, Brain, Code, Cpu, Network } from 'lucide-react';
 
 const AnimatedNumber = ({ value, duration = 3000, delay = 0, shouldStart = false }) => {
   const [displayValue, setDisplayValue] = useState(0);
@@ -122,6 +122,105 @@ const AnimatedNumber = ({ value, duration = 3000, delay = 0, shouldStart = false
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-pulse opacity-60"></div>
         </>
       )}
+    </div>
+  );
+};
+
+const FloatingTechOrb = () => {
+  const [activeIcon, setActiveIcon] = useState(0);
+  const icons = [Brain, Code, Cpu, Network];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIcon((prev) => (prev + 1) % icons.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [icons.length]);
+
+  return (
+    <div className="absolute top-1/2 right-8 xl:right-16 transform -translate-y-1/2 hidden lg:block">
+      {/* Main orb container */}
+      <div className="relative w-32 h-32">
+        {/* Central orb with pulsing glow */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#5DB8FF]/20 via-[#8CD5FF]/10 to-[#5DB8FF]/5 border border-[#5DB8FF]/30 backdrop-blur-sm">
+          {/* Rotating ring */}
+          <div className="absolute inset-2 rounded-full border-2 border-dashed border-[#5DB8FF]/40 animate-spin" style={{ animationDuration: '20s' }}></div>
+          
+          {/* Inner rotating ring */}
+          <div className="absolute inset-4 rounded-full border border-[#8CD5FF]/30 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
+          
+          {/* Central icon */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {icons.map((Icon, index) => (
+              <Icon
+                key={index}
+                className={`w-8 h-8 absolute transition-all duration-500 ${
+                  activeIcon === index
+                    ? 'text-[#5DB8FF] scale-100 opacity-100'
+                    : 'text-[#5DB8FF]/30 scale-75 opacity-0'
+                }`}
+              />
+            ))}
+          </div>
+          
+          {/* Pulsing glow effect */}
+          <div className="absolute inset-0 rounded-full bg-[#5DB8FF]/20 animate-pulse blur-xl"></div>
+        </div>
+
+        {/* Orbiting satellites */}
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-3 h-3 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full"
+            style={{
+              top: '50%',
+              left: '50%',
+              transformOrigin: '0 0',
+              animation: `orbit ${8 + i * 2}s linear infinite`,
+              animationDelay: `${i * 2}s`,
+              transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateX(60px)`
+            }}
+          >
+            <div className="absolute inset-0 bg-[#5DB8FF] rounded-full blur-sm opacity-60"></div>
+          </div>
+        ))}
+
+        {/* Data streams */}
+        <div className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-px h-8 bg-gradient-to-b from-[#5DB8FF]/60 to-transparent"
+              style={{
+                top: '50%',
+                left: '50%',
+                transformOrigin: '0 0',
+                animation: `dataStream ${4 + i}s ease-in-out infinite`,
+                animationDelay: `${i * 0.8}s`,
+                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateX(80px)`
+              }}
+            ></div>
+          ))}
+        </div>
+
+        {/* Floating text indicators */}
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+          <div className="text-xs text-[#5DB8FF] font-medium opacity-80 animate-pulse">
+            AI Processing
+          </div>
+        </div>
+        
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="text-xs text-gray-400 font-medium opacity-60">
+            Neural Network
+          </div>
+        </div>
+
+        {/* Connection lines to main content */}
+        <div className="absolute top-1/2 -left-20 w-16 h-px bg-gradient-to-r from-transparent to-[#5DB8FF]/30"></div>
+        <div className="absolute top-1/2 -left-16 w-2 h-2 bg-[#5DB8FF]/40 rounded-full animate-pulse"></div>
+      </div>
     </div>
   );
 };
@@ -284,6 +383,9 @@ const Hero = () => {
         {/* Improved depth overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/5 to-[#0D1117]/30"></div>
       </div>
+
+      {/* Floating Tech Orb */}
+      <FloatingTechOrb />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         <div className={`transition-all duration-1200 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -453,6 +555,16 @@ const Hero = () => {
           25% { transform: translateY(-20px) translateX(10px); }
           50% { transform: translateY(-10px) translateX(-5px); }
           75% { transform: translateY(-30px) translateX(15px); }
+        }
+        
+        @keyframes orbit {
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(60px); }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(60px); }
+        }
+        
+        @keyframes dataStream {
+          0%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(80px) scaleY(0); }
+          50% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(80px) scaleY(1); }
         }
       `}</style>
     </section>
