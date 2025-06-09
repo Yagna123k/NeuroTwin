@@ -15,7 +15,12 @@ import {
   Activity,
   ChevronRight,
   Circle,
-  ArrowDown
+  ArrowDown,
+  CheckCircle,
+  Clock,
+  Target,
+  Lightbulb,
+  Infinity
 } from 'lucide-react';
 
 const NeuralNetworkBackground = () => {
@@ -90,72 +95,184 @@ const NeuralNetworkBackground = () => {
   );
 };
 
-const StepCard = ({ step, index, isActive, isVisible, onClick }) => {
+const StepCard = ({ step, index, isActive, isVisible, onClick, isCompleted }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   return (
     <div
       className={`group cursor-pointer transition-all duration-700 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-      } ${isActive ? 'scale-105' : 'hover:scale-102'}`}
-      style={{ transitionDelay: `${index * 200}ms` }}
+      } ${isActive ? 'scale-105 z-20' : 'hover:scale-102'}`}
+      style={{ transitionDelay: `${index * 150}ms` }}
       onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`relative p-8 rounded-3xl border backdrop-blur-xl transition-all duration-500 ${
+      {/* Enhanced card with premium styling */}
+      <div className={`relative p-8 rounded-3xl border backdrop-blur-xl transition-all duration-500 h-full overflow-hidden ${
         isActive
           ? `bg-gradient-to-br ${step.bgGradient} ${step.borderColor} shadow-2xl ${step.glowColor}`
+          : isCompleted
+          ? 'bg-gradient-to-br from-green-500/10 via-emerald-400/5 to-green-500/10 border-green-400/30 shadow-lg shadow-green-500/20'
           : 'bg-gradient-to-br from-white/5 via-white/10 to-white/5 border-white/10 hover:border-white/20 hover:bg-gradient-to-br hover:from-white/10 hover:via-white/15 hover:to-white/10'
       }`}>
         
-        {/* Step number */}
-        <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl font-bold text-lg mb-6 transition-all duration-300 ${
-          isActive
-            ? `bg-gradient-to-br ${step.iconGradient} text-white shadow-lg`
-            : 'bg-gray-700/50 text-gray-400 group-hover:bg-gray-600/50 group-hover:text-gray-300'
-        }`}>
-          {index + 1}
+        {/* Step number with enhanced styling */}
+        <div className="flex items-center justify-between mb-6">
+          <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl font-bold text-lg transition-all duration-500 ${
+            isActive
+              ? `bg-gradient-to-br ${step.iconGradient} text-white shadow-xl scale-110`
+              : isCompleted
+              ? 'bg-gradient-to-br from-green-500 to-emerald-500 text-white shadow-lg'
+              : 'bg-gray-700/50 text-gray-400 group-hover:bg-gray-600/50 group-hover:text-gray-300'
+          }`}>
+            {isCompleted ? (
+              <CheckCircle className="w-6 h-6" />
+            ) : (
+              <span>{index + 1}</span>
+            )}
+          </div>
+
+          {/* Status indicator */}
+          <div className={`px-3 py-1 rounded-full text-xs font-medium border transition-all duration-300 ${
+            isActive
+              ? 'bg-white/20 text-white border-white/30'
+              : isCompleted
+              ? 'bg-green-500/20 text-green-300 border-green-400/30'
+              : 'bg-gray-700/30 text-gray-400 border-gray-600/30'
+          }`}>
+            {isActive ? 'Processing' : isCompleted ? 'Complete' : 'Pending'}
+          </div>
         </div>
 
-        {/* Icon */}
-        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${
-          isActive
-            ? `bg-gradient-to-br ${step.iconGradient} shadow-xl`
-            : 'bg-gray-700/50 group-hover:bg-gray-600/50'
-        }`}>
-          <step.icon className={`w-8 h-8 transition-all duration-300 ${
-            isActive ? 'text-white scale-110' : 'text-gray-400 group-hover:text-gray-300'
-          }`} />
+        {/* Enhanced icon with orbital animation */}
+        <div className="relative mb-6">
+          <div className={`w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500 ${
+            isActive
+              ? `bg-gradient-to-br ${step.iconGradient} shadow-2xl scale-110 rotate-6`
+              : isCompleted
+              ? 'bg-gradient-to-br from-green-500 to-emerald-500 shadow-xl'
+              : 'bg-gray-700/50 group-hover:bg-gray-600/50'
+          }`}>
+            <step.icon className={`w-10 h-10 transition-all duration-300 ${
+              isActive || isCompleted ? 'text-white scale-110' : 'text-gray-400 group-hover:text-gray-300'
+            }`} />
+            
+            {/* Orbiting particles for active state */}
+            {isActive && (
+              <>
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-2 h-2 bg-white rounded-full"
+                    style={{
+                      animation: `orbit ${3 + i}s linear infinite`,
+                      animationDelay: `${i * 0.5}s`,
+                      transformOrigin: '0 0',
+                      transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateX(50px)`
+                    }}
+                  />
+                ))}
+              </>
+            )}
+          </div>
           
-          {/* Glow effect for active state */}
-          {isActive && (
-            <div className={`absolute inset-0 bg-gradient-to-br ${step.iconGradient} rounded-2xl blur-xl opacity-50 animate-pulse`}></div>
+          {/* Enhanced glow effect */}
+          {(isActive || isHovered) && (
+            <div className={`absolute inset-0 bg-gradient-to-br ${isActive ? step.iconGradient : 'from-[#5DB8FF] to-[#8CD5FF]'} rounded-3xl blur-xl opacity-50 animate-pulse`}></div>
           )}
         </div>
 
-        {/* Content */}
+        {/* Enhanced content */}
         <div className="space-y-4">
-          <h3 className={`text-xl font-bold transition-colors duration-300 ${
-            isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'
+          <h3 className={`text-2xl font-bold transition-colors duration-300 ${
+            isActive ? 'text-white' : isCompleted ? 'text-green-300' : 'text-gray-300 group-hover:text-white'
           }`}>
             {step.title}
           </h3>
           
           <p className={`text-sm leading-relaxed transition-colors duration-300 ${
-            isActive ? 'text-gray-200' : 'text-gray-400 group-hover:text-gray-300'
+            isActive ? 'text-gray-200' : isCompleted ? 'text-green-200' : 'text-gray-400 group-hover:text-gray-300'
           }`}>
             {step.description}
           </p>
 
-          {/* Progress indicator */}
+          {/* Enhanced features list */}
+          <div className="space-y-2">
+            {step.features?.map((feature, featureIndex) => (
+              <div key={featureIndex} className="flex items-center gap-2">
+                <div className={`w-1.5 h-1.5 rounded-full ${
+                  isActive ? 'bg-white' : isCompleted ? 'bg-green-400' : 'bg-gray-500'
+                }`} />
+                <span className={`text-xs ${
+                  isActive ? 'text-white/80' : isCompleted ? 'text-green-300/80' : 'text-gray-400'
+                }`}>
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Progress indicator for active step */}
           {isActive && (
-            <div className="flex items-center gap-2 pt-2">
+            <div className="flex items-center gap-2 pt-4">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-              <span className="text-xs text-white/80 font-medium">Active Step</span>
+              <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-white to-white/60 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+              </div>
+              <span className="text-xs text-white/80 font-medium">Active</span>
             </div>
           )}
         </div>
 
+        {/* Enhanced hover effects */}
+        {isHovered && !isActive && (
+          <>
+            {/* Floating particles */}
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full animate-pulse"
+                  style={{
+                    left: `${20 + Math.random() * 60}%`,
+                    top: `${20 + Math.random() * 60}%`,
+                    animationDelay: `${i * 200}ms`
+                  }}
+                />
+              ))}
+            </div>
+            
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#5DB8FF]/10 via-transparent to-[#8CD5FF]/10 rounded-3xl"></div>
+          </>
+        )}
+
         {/* Active state overlay */}
         {isActive && (
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 rounded-3xl pointer-events-none" />
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 rounded-3xl pointer-events-none" />
+            
+            {/* Animated border */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 animate-pulse" style={{ animationDuration: '2s' }}></div>
+            
+            {/* Corner highlights */}
+            <div className="absolute top-4 right-4 w-3 h-3 bg-white/40 rounded-full animate-pulse"></div>
+            <div className="absolute bottom-4 left-4 w-2 h-2 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </>
+        )}
+
+        {/* Connection line to next step */}
+        {index < 4 && (
+          <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
+            <div className={`w-8 h-0.5 transition-all duration-500 ${
+              isCompleted ? 'bg-gradient-to-r from-green-400 to-green-500' : 'bg-gradient-to-r from-gray-600 to-gray-700'
+            }`}>
+              <div className={`absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 rounded-full ${
+                isCompleted ? 'bg-green-400' : 'bg-gray-600'
+              }`}></div>
+            </div>
+          </div>
         )}
       </div>
     </div>
@@ -259,6 +376,7 @@ const PersonaAvatar = ({ persona, index, isVisible }) => {
 
 const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState(new Set());
   const [headerVisible, setHeaderVisible] = useState(false);
   const [stepsVisible, setStepsVisible] = useState(false);
   const [architectureVisible, setArchitectureVisible] = useState(false);
@@ -274,48 +392,53 @@ const HowItWorks = () => {
   const steps = [
     {
       icon: Eye,
-      title: "Observe",
-      description: "NeuroTwin passively collects patterns from your real-life digital behavior — emails, chats, meetings, code, content.",
+      title: "Observe & Collect",
+      description: "NeuroTwin passively monitors your digital behavior patterns across all platforms — emails, chats, meetings, code, and content creation.",
       bgGradient: "from-blue-500/20 via-blue-400/10 to-cyan-500/20",
       borderColor: "border-blue-400/40",
       glowColor: "shadow-blue-500/30",
-      iconGradient: "from-blue-500 to-cyan-500"
+      iconGradient: "from-blue-500 to-cyan-500",
+      features: ["Email patterns", "Meeting behavior", "Communication style", "Decision patterns"]
     },
     {
       icon: Brain,
-      title: "Learn",
-      description: "It maps your tone, decision-making style, communication traits, and preferences — forming your Neural Signature.",
+      title: "Analyze & Learn",
+      description: "Advanced AI algorithms map your unique thinking patterns, communication style, decision-making process, and personal preferences to build your Neural Signature.",
       bgGradient: "from-purple-500/20 via-purple-400/10 to-pink-500/20",
       borderColor: "border-purple-400/40",
       glowColor: "shadow-purple-500/30",
-      iconGradient: "from-purple-500 to-pink-500"
+      iconGradient: "from-purple-500 to-pink-500",
+      features: ["Personality mapping", "Tone analysis", "Preference learning", "Context understanding"]
     },
     {
       icon: Users,
-      title: "Split",
-      description: "You divide your identity into specialized role-based personas like \"Founder You,\" \"Creative You,\" or \"Student You.\"",
+      title: "Split & Specialize",
+      description: "Your core identity branches into specialized personas like 'Founder You,' 'Creative You,' or 'Student You' — each with distinct memory and behavioral patterns.",
       bgGradient: "from-emerald-500/20 via-green-400/10 to-teal-500/20",
       borderColor: "border-emerald-400/40",
       glowColor: "shadow-emerald-500/30",
-      iconGradient: "from-emerald-500 to-teal-500"
+      iconGradient: "from-emerald-500 to-teal-500",
+      features: ["Role-based personas", "Isolated memory", "Context switching", "Specialized behavior"]
     },
     {
       icon: Zap,
-      title: "Act",
-      description: "Each persona speaks in your voice, responds in your tone, and completes tasks or joins meetings on your behalf.",
+      title: "Execute & Perform",
+      description: "Each persona autonomously handles tasks, joins meetings, responds to messages, and makes decisions using your authentic voice and decision-making style.",
       bgGradient: "from-orange-500/20 via-orange-400/10 to-red-500/20",
       borderColor: "border-orange-400/40",
       glowColor: "shadow-orange-500/30",
-      iconGradient: "from-orange-500 to-red-500"
+      iconGradient: "from-orange-500 to-red-500",
+      features: ["Autonomous actions", "Voice synthesis", "Real-time decisions", "Task execution"]
     },
     {
       icon: TrendingUp,
-      title: "Evolve",
-      description: "Over time, NeuroTwin tunes its behavior using feedback, reinforcement, and memory — becoming smarter, more \"you.\"",
+      title: "Evolve & Improve",
+      description: "Continuous learning through feedback loops, reinforcement learning, and memory updates — your Twin becomes increasingly sophisticated and 'you-like' over time.",
       bgGradient: "from-indigo-500/20 via-indigo-400/10 to-blue-500/20",
       borderColor: "border-indigo-400/40",
       glowColor: "shadow-indigo-500/30",
-      iconGradient: "from-indigo-500 to-blue-500"
+      iconGradient: "from-indigo-500 to-blue-500",
+      features: ["Feedback learning", "Performance optimization", "Memory enhancement", "Behavioral refinement"]
     }
   ];
 
@@ -419,11 +542,12 @@ const HowItWorks = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setCompletedSteps(prev => new Set([...prev, activeStep]));
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [steps.length]);
+  }, [steps.length, activeStep]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A0E1A] via-[#0D1117] to-[#161B22] relative overflow-hidden">
@@ -484,7 +608,7 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* 5-Step Clone Engine */}
+      {/* Enhanced 5-Step Clone Engine */}
       <section ref={stepsRef} className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -496,32 +620,61 @@ const HowItWorks = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-5 gap-6">
+          {/* Enhanced steps grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
             {steps.map((step, index) => (
               <StepCard
                 key={index}
                 step={step}
                 index={index}
                 isActive={activeStep === index}
+                isCompleted={completedSteps.has(index)}
                 isVisible={stepsVisible}
                 onClick={() => setActiveStep(index)}
               />
             ))}
           </div>
 
-          {/* Step progress indicator */}
-          <div className="flex items-center justify-center gap-2 mt-12">
+          {/* Enhanced step progress indicator */}
+          <div className="flex items-center justify-center gap-3 mt-12">
             {steps.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveStep(index)}
-                className={`transition-all duration-300 ${
+                className={`transition-all duration-500 ${
                   index === activeStep 
-                    ? 'w-12 h-3 bg-gradient-to-r from-[#5DB8FF] to-[#8CD5FF] rounded-full'
-                    : 'w-3 h-3 bg-gray-600 hover:bg-gray-500 rounded-full'
+                    ? 'w-16 h-4 bg-gradient-to-r from-[#5DB8FF] to-[#8CD5FF] rounded-full shadow-lg shadow-[#5DB8FF]/30'
+                    : completedSteps.has(index)
+                    ? 'w-4 h-4 bg-gradient-to-r from-green-400 to-green-500 rounded-full'
+                    : 'w-4 h-4 bg-gray-600 hover:bg-gray-500 rounded-full'
                 }`}
               />
             ))}
+          </div>
+
+          {/* Process flow visualization */}
+          <div className="mt-16 flex items-center justify-center">
+            <div className="flex items-center gap-4 text-gray-400">
+              <div className="flex items-center gap-2">
+                <Circle className="w-3 h-3 fill-current text-[#5DB8FF]" />
+                <span className="text-sm">Input</span>
+              </div>
+              <ArrowRight className="w-4 h-4" />
+              <div className="flex items-center gap-2">
+                <Circle className="w-3 h-3 fill-current text-purple-400" />
+                <span className="text-sm">Process</span>
+              </div>
+              <ArrowRight className="w-4 h-4" />
+              <div className="flex items-center gap-2">
+                <Circle className="w-3 h-3 fill-current text-emerald-400" />
+                <span className="text-sm">Execute</span>
+              </div>
+              <ArrowRight className="w-4 h-4" />
+              <div className="flex items-center gap-2">
+                <Circle className="w-3 h-3 fill-current text-orange-400" />
+                <span className="text-sm">Evolve</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
