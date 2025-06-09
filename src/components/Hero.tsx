@@ -228,17 +228,7 @@ const FloatingTechOrb = () => {
 const EnhancedCTAButton = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [ripples, setRipples] = useState([]);
-  const [energyLevel, setEnergyLevel] = useState(0);
   
-  useEffect(() => {
-    // Energy level animation
-    const interval = setInterval(() => {
-      setEnergyLevel(prev => (prev + 1) % 100);
-    }, 50);
-    
-    return () => clearInterval(interval);
-  }, []);
-
   const createRipple = (e) => {
     const button = e.currentTarget;
     const rect = button.getBoundingClientRect();
@@ -263,28 +253,22 @@ const EnhancedCTAButton = () => {
 
   return (
     <button 
-      className="group relative px-12 py-6 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-bold text-xl transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-[#5DB8FF]/40 flex items-center gap-4 overflow-hidden border-2 border-[#5DB8FF]/30 hover:border-[#8CD5FF]/60"
+      className="group relative px-10 py-5 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-bold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/30 flex items-center gap-3 overflow-hidden border border-[#5DB8FF]/30"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={createRipple}
     >
-      {/* Animated background layers */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg"></div>
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
       
       {/* Energy wave effect */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transition-transform duration-1000 group-hover:translate-x-full"
-        style={{ transform: `translateX(-100%)` }}
-      ></div>
-      
-      {/* Pulsing energy border */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#5DB8FF]/50 via-[#8CD5FF]/70 to-[#5DB8FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm animate-pulse"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
       
       {/* Ripple effects */}
       {ripples.map(ripple => (
         <div
           key={ripple.id}
-          className="absolute bg-white/30 rounded-full animate-ping"
+          className="absolute bg-white/30 rounded-full animate-ping pointer-events-none"
           style={{
             left: ripple.x,
             top: ripple.y,
@@ -296,16 +280,12 @@ const EnhancedCTAButton = () => {
       ))}
       
       {/* Main content */}
-      <div className="relative z-10 flex items-center gap-4">
-        {/* Animated icon container */}
+      <div className="relative z-10 flex items-center gap-3">
+        {/* Animated icon */}
         <div className="relative">
-          <div className={`w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-all duration-300 ${
-            isHovered ? 'scale-110 rotate-12' : 'scale-100 rotate-0'
-          }`}>
-            <Zap className={`w-5 h-5 transition-all duration-300 ${
-              isHovered ? 'animate-pulse scale-110' : ''
-            }`} />
-          </div>
+          <Zap className={`w-5 h-5 transition-all duration-300 ${
+            isHovered ? 'animate-pulse scale-110' : ''
+          }`} />
           
           {/* Orbiting particles around icon */}
           {isHovered && (
@@ -320,7 +300,7 @@ const EnhancedCTAButton = () => {
                     animation: `orbit ${1.5 + i * 0.5}s linear infinite`,
                     animationDelay: `${i * 0.2}s`,
                     transformOrigin: '0 0',
-                    transform: `translate(-50%, -50%) rotate(${i * 120}deg) translateX(20px)`
+                    transform: `translate(-50%, -50%) rotate(${i * 120}deg) translateX(15px)`
                   }}
                 />
               ))}
@@ -328,50 +308,44 @@ const EnhancedCTAButton = () => {
           )}
         </div>
         
-        {/* Text with typewriter effect on hover */}
-        <span className="relative overflow-hidden">
-          <span className={`block transition-all duration-500 ${
-            isHovered ? 'transform translate-y-0' : 'transform translate-y-0'
-          }`}>
-            Start Training Your Twin
-          </span>
-          
+        {/* Text */}
+        <span className="relative">
+          Start Training Your Twin
           {/* Underline animation */}
           <div className={`absolute bottom-0 left-0 h-0.5 bg-white/60 transition-all duration-500 ${
             isHovered ? 'w-full' : 'w-0'
           }`}></div>
         </span>
         
-        {/* Enhanced arrow with trail effect */}
+        {/* Arrow with trail effect */}
         <div className="relative">
-          <ArrowRight className={`w-6 h-6 transition-all duration-300 ${
-            isHovered ? 'translate-x-2 scale-110' : 'translate-x-0 scale-100'
+          <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
+            isHovered ? 'translate-x-1 scale-110' : 'translate-x-0 scale-100'
           }`} />
           
           {/* Arrow trail effect */}
           {isHovered && (
             <>
-              <ArrowRight className="absolute top-0 left-0 w-6 h-6 opacity-50 animate-pulse\" style={{ animationDelay: '0.1s' }} />
-              <ArrowRight className="absolute top-0 left-0 w-6 h-6 opacity-25 animate-pulse" style={{ animationDelay: '0.2s' }} />
+              <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-50 animate-pulse" style={{ animationDelay: '0.1s' }} />
+              <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-25 animate-pulse" style={{ animationDelay: '0.2s' }} />
             </>
           )}
         </div>
       </div>
 
-      {/* Enhanced outer glow with multiple layers */}
-      <div className="absolute -inset-2 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-2xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-700 -z-10"></div>
-      <div className="absolute -inset-4 bg-gradient-to-r from-[#5DB8FF]/30 via-[#8CD5FF]/50 to-[#5DB8FF]/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 -z-20"></div>
+      {/* Outer glow effects */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-2xl blur opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
       
       {/* Energy field visualization */}
       {isHovered && (
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-px h-4 bg-gradient-to-b from-white/60 to-transparent"
+              className="absolute w-px h-3 bg-gradient-to-b from-white/60 to-transparent"
               style={{
-                left: `${20 + i * 10}%`,
-                top: '10%',
+                left: `${20 + i * 12}%`,
+                top: '20%',
                 animation: `energyStream ${1 + i * 0.2}s ease-in-out infinite`,
                 animationDelay: `${i * 0.1}s`
               }}
@@ -383,14 +357,14 @@ const EnhancedCTAButton = () => {
       {/* Floating energy particles */}
       {isHovered && (
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 bg-white/80 rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s`
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 60}%`,
+                animation: `float ${2 + Math.random() * 2}s ease-in-out infinite ${Math.random() * 1}s`
               }}
             />
           ))}
@@ -719,8 +693,8 @@ const Hero = () => {
         }
         
         @keyframes orbit {
-          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(20px); }
-          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(20px); }
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(15px); }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(15px); }
         }
         
         @keyframes dataStream {
