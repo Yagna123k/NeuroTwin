@@ -290,7 +290,7 @@ const UseCases = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Premium showcase card */}
-              <div className={`relative p-10 rounded-3xl border backdrop-blur-xl transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-2xl ${useCases[activeUseCase].glowColor}`}>
+              <div className={`relative p-10 px-16 rounded-3xl border backdrop-blur-xl transition-all duration-700 bg-gradient-to-br ${useCases[activeUseCase].bgGradient} ${useCases[activeUseCase].borderColor} shadow-2xl ${useCases[activeUseCase].glowColor}`}>
                 
                 {/* Navigation arrows */}
                 <button
