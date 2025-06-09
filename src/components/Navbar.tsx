@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Brain, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/only_Logo.png'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +47,7 @@ const Navbar = () => {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-[#0D1117]/95 backdrop-blur-xl' 
+          ? 'bg-transparent backdrop-blur-md' 
           : 'bg-transparent'
       }`}>
         <div className="max-w-6xl mx-auto px-6">
@@ -55,8 +56,9 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group cursor-pointer" onClick={handleNavClick}>
               <div className="relative">
-                <Brain className="w-8 h-8 text-[#5DB8FF]" />
-                <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
+                <img src={logo} alt="Logo" className="w-14 h-14" />
+                {/* <Brain className="w-8 h-8 text-[#5DB8FF]" /> */}
+                <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-15"></div>
               </div>
               <span className="text-xl font-bold text-white">NeuroTwin</span>
             </Link>

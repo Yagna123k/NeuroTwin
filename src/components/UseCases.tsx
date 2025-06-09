@@ -318,7 +318,7 @@ const UseCases = () => {
                     </div>
                     
                     {/* Orbiting particles */}
-                    {[...Array(3)].map((_, i) => (
+                    {/* {[...Array(3)].map((_, i) => (
                       <div
                         key={i}
                         className="absolute w-2 h-2 bg-white rounded-full"
@@ -329,7 +329,7 @@ const UseCases = () => {
                           transform: `translate(-50%, -50%) rotate(${i * 120}deg) translateX(60px)`
                         }}
                       />
-                    ))}
+                    ))} */}
                   </div>
                   
                   <div className="flex-1">
@@ -512,7 +512,7 @@ const UseCases = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
           25% { transform: translateY(-15px) translateX(8px) rotate(90deg); }

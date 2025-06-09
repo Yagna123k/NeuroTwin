@@ -1,4 +1,4 @@
-import React from 'react';
+import logo from '../assets/only_Logo.png';
 import { Brain, Twitter, Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
@@ -47,8 +47,9 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <div className="relative">
-                <Brain className="w-8 h-8 text-[#5DB8FF]" />
-                <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-30"></div>
+                <img src={logo} alt="Logo" className="w-12 h-12" />
+                {/* <Brain className="w-8 h-8 text-[#5DB8FF]" /> */}
+                <div className="absolute inset-0 bg-[#5DB8FF] blur-lg opacity-15"></div>
               </div>
               <span className="text-xl font-bold text-white">NeuroTwin</span>
             </div>
