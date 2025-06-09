@@ -128,7 +128,6 @@ const AnimatedNumber = ({ value, duration = 3000, delay = 0, shouldStart = false
 
 const FloatingTechOrb = () => {
   const [activeIcon, setActiveIcon] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const icons = [Brain, Code, Cpu, Network];
   
   useEffect(() => {
@@ -140,287 +139,89 @@ const FloatingTechOrb = () => {
   }, [icons.length]);
 
   return (
-    <div 
-      className="absolute top-24 right-8 xl:right-16 hidden lg:block z-20"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Main orb container with improved sizing */}
-      <div className="relative w-32 h-32">
-        {/* Central orb with enhanced glassmorphism */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#5DB8FF]/30 via-[#8CD5FF]/20 to-[#5DB8FF]/10 border border-[#5DB8FF]/40 backdrop-blur-xl shadow-2xl shadow-[#5DB8FF]/20 transition-all duration-500 hover:shadow-[#5DB8FF]/40 hover:scale-105">
+    <div className="absolute top-24 right-8 xl:right-16 hidden lg:block z-20">
+      {/* Main orb container */}
+      <div className="relative w-28 h-28">
+        {/* Central orb with pulsing glow */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#5DB8FF]/20 via-[#8CD5FF]/10 to-[#5DB8FF]/5 border border-[#5DB8FF]/30 backdrop-blur-sm">
+          {/* Rotating outer ring */}
+          <div className="absolute inset-1 rounded-full border-2 border-dashed border-[#5DB8FF]/40 animate-spin" style={{ animationDuration: '20s' }}></div>
           
-          {/* Improved rotating outer ring */}
-          <div className="absolute inset-2 rounded-full border-2 border-dashed border-[#5DB8FF]/50 transition-all duration-500" 
-               style={{ 
-                 animation: `spin 20s linear infinite ${isHovered ? ', pulse 2s ease-in-out infinite' : ''}` 
-               }}>
-          </div>
+          {/* Inner rotating ring */}
+          <div className="absolute inset-3 rounded-full border border-[#8CD5FF]/30 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
           
-          {/* Enhanced inner rotating ring */}
-          <div className="absolute inset-4 rounded-full border border-[#8CD5FF]/40 transition-all duration-500" 
-               style={{ 
-                 animation: `spin 15s linear infinite reverse ${isHovered ? ', pulse 2s ease-in-out infinite 0.5s' : ''}` 
-               }}>
-          </div>
-          
-          {/* Central icon with improved transitions */}
+          {/* Central icon */}
           <div className="absolute inset-0 flex items-center justify-center">
             {icons.map((Icon, index) => (
               <Icon
                 key={index}
-                className={`w-8 h-8 absolute transition-all duration-700 ease-in-out ${
+                className={`w-7 h-7 absolute transition-all duration-500 ${
                   activeIcon === index
-                    ? 'text-[#5DB8FF] scale-100 opacity-100 rotate-0'
-                    : 'text-[#5DB8FF]/30 scale-75 opacity-0 rotate-45'
+                    ? 'text-[#5DB8FF] scale-100 opacity-100'
+                    : 'text-[#5DB8FF]/30 scale-75 opacity-0'
                 }`}
               />
             ))}
           </div>
           
-          {/* Enhanced pulsing glow effect */}
-          <div className="absolute inset-0 rounded-full bg-[#5DB8FF]/20 blur-xl transition-all duration-500"
-               style={{ 
-                 animation: `pulse 3s ease-in-out infinite ${isHovered ? ', breathe 2s ease-in-out infinite' : ''}` 
-               }}>
-          </div>
+          {/* Pulsing glow effect */}
+          <div className="absolute inset-0 rounded-full bg-[#5DB8FF]/20 animate-pulse blur-xl"></div>
         </div>
 
-        {/* Improved orbiting satellites with better spacing */}
+        {/* Orbiting satellites */}
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-3 h-3 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full shadow-lg transition-all duration-300"
+            className="absolute w-2.5 h-2.5 bg-gradient-to-br from-[#5DB8FF] to-[#8CD5FF] rounded-full"
             style={{
               top: '50%',
               left: '50%',
               transformOrigin: '0 0',
-              animation: `orbit ${10 + i * 2}s linear infinite`,
-              animationDelay: `${i * 2.5}s`,
-              transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateX(60px)`,
-              filter: 'drop-shadow(0 0 4px rgba(93, 184, 255, 0.6))'
+              animation: `orbit ${8 + i * 2}s linear infinite`,
+              animationDelay: `${i * 2}s`,
+              transform: `translate(-50%, -50%) rotate(${i * 90}deg) translateX(50px)`
             }}
           >
-            {/* Satellite glow effect */}
-            <div className="absolute inset-0 bg-[#5DB8FF] rounded-full blur-sm opacity-60 animate-pulse"></div>
+            <div className="absolute inset-0 bg-[#5DB8FF] rounded-full blur-sm opacity-60"></div>
           </div>
         ))}
 
-        {/* Enhanced data streams with better positioning */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* Data streams */}
+        <div className="absolute inset-0">
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-0.5 h-8 bg-gradient-to-b from-[#5DB8FF]/80 via-[#8CD5FF]/60 to-transparent rounded-full"
+              className="absolute w-px h-6 bg-gradient-to-b from-[#5DB8FF]/60 to-transparent"
               style={{
                 top: '50%',
                 left: '50%',
                 transformOrigin: '0 0',
                 animation: `dataStream ${4 + i}s ease-in-out infinite`,
                 animationDelay: `${i * 0.8}s`,
-                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateX(80px)`,
-                filter: 'drop-shadow(0 0 2px rgba(93, 184, 255, 0.8))'
+                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateX(70px)`
               }}
-            />
+            ></div>
           ))}
         </div>
 
-        {/* Improved floating text indicators with better typography */}
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 transition-all duration-300">
-          <div className="text-xs text-[#5DB8FF] font-semibold opacity-90 animate-pulse whitespace-nowrap bg-black/20 px-2 py-1 rounded-full backdrop-blur-sm border border-[#5DB8FF]/20">
+        {/* Floating text indicators */}
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+          <div className="text-xs text-[#5DB8FF] font-medium opacity-80 animate-pulse whitespace-nowrap">
             AI Processing
           </div>
         </div>
         
-        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-300">
-          <div className="text-xs text-gray-400 font-medium opacity-70 whitespace-nowrap bg-black/20 px-2 py-1 rounded-full backdrop-blur-sm border border-gray-600/20">
+        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+          <div className="text-xs text-gray-400 font-medium opacity-60 whitespace-nowrap">
             Neural Network
           </div>
         </div>
 
-        {/* Enhanced connection lines with better visual hierarchy */}
-        <div className="absolute top-1/2 -left-20 w-16 h-px bg-gradient-to-r from-transparent via-[#5DB8FF]/40 to-[#5DB8FF]/60 transition-all duration-300"></div>
-        <div className="absolute top-1/2 -left-16 w-2 h-2 bg-[#5DB8FF]/60 rounded-full animate-pulse shadow-lg shadow-[#5DB8FF]/40"></div>
-        
-        {/* Additional connection nodes */}
-        <div className="absolute top-1/2 -left-12 w-1 h-1 bg-[#8CD5FF]/40 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute top-1/2 -left-8 w-1 h-1 bg-[#5DB8FF]/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-
-        {/* Hover enhancement effects */}
-        {isHovered && (
-          <>
-            {/* Additional energy rings */}
-            <div className="absolute inset-0 rounded-full border border-[#5DB8FF]/30 animate-ping" style={{ animationDuration: '2s' }}></div>
-            <div className="absolute -inset-2 rounded-full border border-[#8CD5FF]/20 animate-ping" style={{ animationDuration: '3s', animationDelay: '0.5s' }}></div>
-            
-            {/* Floating particles */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-[#5DB8FF] rounded-full animate-pulse"
-                  style={{
-                    left: `${20 + Math.random() * 60}%`,
-                    top: `${20 + Math.random() * 60}%`,
-                    animation: `float ${2 + Math.random() * 3}s ease-in-out infinite ${Math.random() * 2}s`,
-                    animationDelay: `${i * 0.2}s`
-                  }}
-                />
-              ))}
-            </div>
-          </>
-        )}
+        {/* Connection lines to main content */}
+        <div className="absolute top-1/2 -left-16 w-12 h-px bg-gradient-to-r from-transparent to-[#5DB8FF]/30"></div>
+        <div className="absolute top-1/2 -left-12 w-1.5 h-1.5 bg-[#5DB8FF]/40 rounded-full animate-pulse"></div>
       </div>
     </div>
-  );
-};
-
-const EnhancedCTAButton = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [ripples, setRipples] = useState([]);
-  
-  const createRipple = (e) => {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
-    
-    const newRipple = {
-      x,
-      y,
-      size,
-      id: Date.now()
-    };
-    
-    setRipples(prev => [...prev, newRipple]);
-    
-    // Remove ripple after animation
-    setTimeout(() => {
-      setRipples(prev => prev.filter(ripple => ripple.id !== newRipple.id));
-    }, 600);
-  };
-
-  return (
-    <button 
-      className="group relative px-10 py-5 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-bold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/30 flex items-center gap-3 overflow-hidden border border-[#5DB8FF]/30"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={createRipple}
-    >
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
-      
-      {/* Energy wave effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-      
-      {/* Ripple effects */}
-      {ripples.map(ripple => (
-        <div
-          key={ripple.id}
-          className="absolute bg-white/30 rounded-full animate-ping pointer-events-none"
-          style={{
-            left: ripple.x,
-            top: ripple.y,
-            width: ripple.size,
-            height: ripple.size,
-            animationDuration: '0.6s'
-          }}
-        />
-      ))}
-      
-      {/* Main content */}
-      <div className="relative z-10 flex items-center gap-3">
-        {/* Animated icon */}
-        <div className="relative">
-          <Zap className={`w-5 h-5 transition-all duration-300 ${
-            isHovered ? 'animate-pulse scale-110' : ''
-          }`} />
-          
-          {/* Orbiting particles around icon */}
-          {isHovered && (
-            <>
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full"
-                  style={{
-                    top: '50%',
-                    left: '50%',
-                    animation: `orbit ${1.5 + i * 0.5}s linear infinite`,
-                    animationDelay: `${i * 0.2}s`,
-                    transformOrigin: '0 0',
-                    transform: `translate(-50%, -50%) rotate(${i * 120}deg) translateX(15px)`
-                  }}
-                />
-              ))}
-            </>
-          )}
-        </div>
-        
-        {/* Text */}
-        <span className="relative">
-          Start Training Your Twin
-          {/* Underline animation */}
-          <div className={`absolute bottom-0 left-0 h-0.5 bg-white/60 transition-all duration-500 ${
-            isHovered ? 'w-full' : 'w-0'
-          }`}></div>
-        </span>
-        
-        {/* Arrow with trail effect */}
-        <div className="relative">
-          <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
-            isHovered ? 'translate-x-1 scale-110' : 'translate-x-0 scale-100'
-          }`} />
-          
-          {/* Arrow trail effect */}
-          {isHovered && (
-            <>
-              <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-50 animate-pulse\" style={{ animationDelay: '0.1s' }} />
-              <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-25 animate-pulse" style={{ animationDelay: '0.2s' }} />
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Outer glow effects */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-2xl blur opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
-      
-      {/* Energy field visualization */}
-      {isHovered && (
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-px h-3 bg-gradient-to-b from-white/60 to-transparent"
-              style={{
-                left: `${20 + i * 12}%`,
-                top: '20%',
-                animation: `energyStream ${1 + i * 0.2}s ease-in-out infinite`,
-                animationDelay: `${i * 0.1}s`
-              }}
-            />
-          ))}
-        </div>
-      )}
-      
-      {/* Floating energy particles */}
-      {isHovered && (
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/80 rounded-full"
-              style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${20 + Math.random() * 60}%`,
-                animation: `float ${2 + Math.random() * 2}s ease-in-out infinite ${Math.random() * 1}s`
-              }}
-            />
-          ))}
-        </div>
-      )}
-    </button>
   );
 };
 
@@ -614,10 +415,24 @@ const Hero = () => {
             <span className="text-[#5DB8FF] font-medium">Scale yourself infinitely</span> while you focus on what only you can do.
           </p>
 
-          {/* Enhanced CTA section with new button */}
+          {/* Enhanced CTA section */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-            {/* Enhanced Premium CTA button */}
-            <EnhancedCTAButton />
+            {/* Premium CTA button with improved effects */}
+            <button className="group relative px-10 py-5 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-2xl text-white font-semibold text-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#5DB8FF]/30 flex items-center gap-3 overflow-hidden border border-[#5DB8FF]/30">
+              {/* Enhanced background effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
+              {/* Button content */}
+              <div className="relative z-10 flex items-center gap-3">
+                <Zap className="w-5 h-5 group-hover:animate-pulse" />
+                <span>Start Training Your Twin</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+
+              {/* Enhanced outer glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-2xl blur opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10"></div>
+            </button>
             
             {/* Enhanced demo button */}
             <button className="group text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-3">
@@ -743,24 +558,13 @@ const Hero = () => {
         }
         
         @keyframes orbit {
-          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(15px); }
-          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(15px); }
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(50px); }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(50px); }
         }
         
         @keyframes dataStream {
           0%, 100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(70px) scaleY(0); }
           50% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rotation)) translateX(70px) scaleY(1); }
-        }
-        
-        @keyframes energyStream {
-          0% { transform: translateY(0) scaleY(0); opacity: 0; }
-          50% { transform: translateY(-10px) scaleY(1); opacity: 1; }
-          100% { transform: translateY(-20px) scaleY(0); opacity: 0; }
-        }
-        
-        @keyframes breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
         }
       `}</style>
     </section>
