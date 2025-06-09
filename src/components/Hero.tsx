@@ -376,7 +376,7 @@ const EnhancedCTAButton = () => {
           {/* Arrow trail effect */}
           {isHovered && (
             <>
-              <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-50 animate-pulse" style={{ animationDelay: '0.1s' }} />
+              <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-50 animate-pulse\" style={{ animationDelay: '0.1s' }} />
               <ArrowRight className="absolute top-0 left-0 w-5 h-5 opacity-25 animate-pulse" style={{ animationDelay: '0.2s' }} />
             </>
           )}
