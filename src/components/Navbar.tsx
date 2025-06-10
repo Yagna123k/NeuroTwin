@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Brain, Menu, X } from 'lucide-react';
+import { Brain, Menu, X, LogIn, User } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/only_Logo.png'
 
@@ -41,6 +41,12 @@ const Navbar = () => {
     // Close mobile menu and scroll to top
     setIsMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSignIn = () => {
+    // Handle sign in logic here
+    console.log('Sign in clicked');
+    // You can add your authentication logic here
   };
 
   return (
@@ -90,6 +96,27 @@ const Navbar = () => {
                   </Link>
                 )
               ))}
+            </div>
+
+            {/* Desktop Sign In Button */}
+            <div className="hidden lg:flex items-center gap-4">
+              <button
+                onClick={handleSignIn}
+                className="group relative px-6 py-2.5 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-xl text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5DB8FF]/25 flex items-center gap-2 overflow-hidden border border-[#5DB8FF]/30"
+              >
+                {/* Enhanced background effects */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                
+                {/* Button content */}
+                <div className="relative z-10 flex items-center gap-2">
+                  <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Sign In</span>
+                </div>
+
+                {/* Enhanced outer glow */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300 -z-10"></div>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -154,6 +181,30 @@ const Navbar = () => {
                 </Link>
               )
             ))}
+          </div>
+
+          {/* Mobile Sign In Button */}
+          <div className="mb-8">
+            <button
+              onClick={() => {
+                handleSignIn();
+                handleNavClick();
+              }}
+              className="group relative w-full px-6 py-4 bg-gradient-to-r from-[#5DB8FF] via-[#3A9EFF] to-[#5DB8FF] rounded-xl text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5DB8FF]/25 flex items-center justify-center gap-3 overflow-hidden border border-[#5DB8FF]/30"
+            >
+              {/* Enhanced background effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              
+              {/* Button content */}
+              <div className="relative z-10 flex items-center gap-3">
+                <LogIn className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                <span>Sign In</span>
+              </div>
+
+              {/* Enhanced outer glow */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] rounded-xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300 -z-10"></div>
+            </button>
           </div>
 
           {/* Footer-style description */}
