@@ -129,3 +129,8 @@ Anyone with too much to do — and too much to be.
 NeuroTwin is more than code. It’s a new mental model.
 
 And it’s just getting started.
+
+
+## License
+
+This project is licensed under the Mozilla Public License 2.0. See the [LICENSE](./LICENSE) file for details.
