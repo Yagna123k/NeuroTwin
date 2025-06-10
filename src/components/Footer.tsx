@@ -39,10 +39,10 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-t from-[#0D1117] to-[#161B22] border-t border-gray-800">
       <div className="max-w-6xl mx-auto px-6 py-16">
-        
+
         {/* Main footer content */}
         <div className="grid lg:grid-cols-6 gap-8 mb-12">
-          
+
           {/* Brand section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
@@ -91,17 +91,17 @@ const Footer = () => {
         </div>
 
         {/* Newsletter signup */}
-        <div className="bg-gradient-to-r from-gray-800/30 to-gray-900/30 rounded-2xl p-8 border border-gray-700/30 mb-12">
-          <div className="max-w-md">
+        <div className="bg-gradient-to-r from-gray-800/30 to-gray-900/30 rounded-2xl p-6 sm:p-8 border border-gray-700/30 mb-12">
+          <div className="max-w-md w-full">
             <h3 className="text-xl font-bold text-white mb-2">Stay Updated</h3>
             <p className="text-gray-400 mb-4 text-sm">Get the latest updates on NeuroTwin development and AI news.</p>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#5DB8FF] transition-colors"
+                className="w-full sm:flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#5DB8FF] transition-colors"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-[#5DB8FF] to-[#3A9EFF] rounded-lg text-white font-medium hover:scale-105 transition-transform">
+              <button className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-[#5DB8FF] to-[#3A9EFF] rounded-lg text-white font-medium hover:scale-105 transition-transform">
                 Subscribe
               </button>
             </div>
@@ -109,11 +109,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom section */}
-        <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-gray-800">
-          <div className="text-gray-400 text-sm mb-4 sm:mb-0">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 pt-8 border-t border-gray-800 text-center sm:text-left">
+          <div className="text-gray-400 text-sm">
             © 2025 NeuroTwin. All rights reserved.
           </div>
-          <div className="flex items-center gap-6 text-sm text-gray-400">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-sm text-gray-400">
             <span>Made with 🧠 for the future</span>
             <div className="flex items-center gap-1">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>

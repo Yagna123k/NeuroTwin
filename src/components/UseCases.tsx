@@ -283,7 +283,7 @@ const UseCases = () => {
           </div>
 
           {/* Enhanced main showcase */}
-          <div className="max-w-6gitxl mx-auto mb-16">
+          <div className="max-w-6xl mx-auto mb-16 hidden md:block">
             <div 
               className="relative"
               onMouseEnter={() => setIsHovered(true)}

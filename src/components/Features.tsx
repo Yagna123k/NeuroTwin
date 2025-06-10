@@ -403,7 +403,7 @@ const Features = () => {
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.85] tracking-tight mb-8">
               <span className="block mb-4">Your Digital Self.</span>
               <span className="bg-gradient-to-r from-[#5DB8FF] via-[#8CD5FF] to-[#5DB8FF] bg-clip-text text-transparent relative inline-block">
-                Superpowered.
+                Super powered.
                 <div className="absolute inset-0 bg-gradient-to-r from-[#5DB8FF]/30 via-[#8CD5FF]/50 to-[#5DB8FF]/30 blur-3xl opacity-30 animate-pulse"></div>
               </span>
             </h1>
@@ -482,7 +482,7 @@ const Features = () => {
               </h2>
               
               {/* Enhanced orbiting elements */}
-              <div className="absolute inset-0 pointer-events-none">
+              {/* <div className="absolute inset-0 pointer-events-none">
                 {[...Array(8)].map((_, i) => (
                   <div
                     key={i}
@@ -497,7 +497,7 @@ const Features = () => {
                     }}
                   />
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
