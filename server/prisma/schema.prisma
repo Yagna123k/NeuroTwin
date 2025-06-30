@@ -1,0 +1,67 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  full_name  String?
+  clerk_id   String     @unique
+  created_at DateTime   @default(now())
+  personas   Persona[]
+  emailThreads EmailThread[]
+  taskLogs   TaskLog[]
+}
+
+model Persona {
+  id               String     @id @default(uuid())
+  user             User       @relation(fields: [userId], references: [id])
+  userId           String
+  name             String
+  role             String
+  voice_profile    String?
+  memory_vector_id String?
+  created_at       DateTime   @default(now())
+  emailMessages    EmailMessage[]
+  taskLogs         TaskLog[]
+}
+
+model EmailThread {
+  id           String          @id @default(uuid())
+  user         User            @relation(fields: [userId], references: [id])
+  userId       String
+  thread_id    String
+  subject      String?
+  participants String[]
+  created_at   DateTime        @default(now())
+  messages     EmailMessage[]
+}
+
+model EmailMessage {
+  id         String     @id @default(uuid())
+  thread     EmailThread @relation(fields: [threadId], references: [id])
+  threadId   String
+  persona    Persona?   @relation(fields: [personaId], references: [id])
+  personaId  String?
+  sender_email String
+  content    String
+  direction  String
+  timestamp  DateTime   @default(now())
+}
+
+model TaskLog {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  persona    Persona? @relation(fields: [personaId], references: [id])
+  personaId  String?
+  task_type  String
+  status     String
+  metadata   Json?
+  created_at DateTime @default(now())
+}
